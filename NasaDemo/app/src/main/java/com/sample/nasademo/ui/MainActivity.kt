@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
           ivNasaImage.showView()
           tvTitle.setTextOrHideView(nasaData?.title)
           tvDesc.setTextOrHideView(nasaData?.explanation)
+          tvDate.setTextOrHideView(nasaData?.date)
         } else {
           tvTitle.setTextOrHideView(tvTitle.context.getString(R.string.loading_failed))
           tvTitle.setOnClickListener {
