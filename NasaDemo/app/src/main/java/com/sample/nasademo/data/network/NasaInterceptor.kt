@@ -22,16 +22,20 @@ class NasaInterceptor(val nasaDatabase: NasaDatabase) : Interceptor {
 
   private fun saveResponse(response: Response): Response {
     CoroutineScope(Dispatchers.IO).launch {
-      val body = response.peekBody(Long.MAX_VALUE).string()
-      nasaDatabase.cachesDao().insertCacheResponse(
-        ApiCaches(
-          url = response.request.url.toUrl().toString(),
-          response = body,
-          protocol = response.protocol.toString(),
-          message = response.message,
-          code = response.code
+      try {
+        val body = response.peekBody(Long.MAX_VALUE).string()
+        nasaDatabase.cachesDao().insertCacheResponse(
+          ApiCaches(
+            url = response.request.url.toUrl().toString(),
+            response = body,
+            protocol = response.protocol.toString(),
+            message = response.message,
+            code = response.code
+          )
         )
-      )
+      } catch (e: Exception) {
+        e.printStackTrace()
+      }
     }
     return response
   }

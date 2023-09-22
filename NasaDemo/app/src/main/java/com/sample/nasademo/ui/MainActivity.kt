@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.sample.nasademo.R
 import com.sample.nasademo.databinding.ActivityMainLayoutBinding
 import com.sample.nasademo.utility.hideView
 import com.sample.nasademo.utility.setTextOrHideView
@@ -30,14 +31,24 @@ class MainActivity : AppCompatActivity() {
 
     viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-    viewModel.nasaData.observe(this){ nasaData ->
+    viewModel.nasaData.observe(this) { nasaData ->
       with(binding) {
-        Glide.with(ivNasaImage.context).load(nasaData?.url).into(ivNasaImage)
-        ivNasaImage.showView()
-        tvTitle.setTextOrHideView(nasaData?.title)
-        tvDesc.setTextOrHideView(nasaData?.explanation)
+        if (nasaData.isSuccess) {
+          Glide.with(ivNasaImage.context).load(nasaData?.url).into(ivNasaImage)
+          ivNasaImage.showView()
+          tvTitle.setTextOrHideView(nasaData?.title)
+          tvDesc.setTextOrHideView(nasaData?.explanation)
+        } else {
+          tvTitle.setTextOrHideView(tvTitle.context.getString(R.string.loading_failed))
+          tvTitle.setOnClickListener {
+            viewModel.getTodayImage()
+            tvTitle.setTextOrHideView(tvTitle.context.getString(R.string.text_loading))
+            tvTitle.setOnClickListener(null)
+          }
+        }
       }
     }
+    viewModel.getTodayImage()
 
     with(binding.vvVideo) {
       val mediaController = MediaController(context)
