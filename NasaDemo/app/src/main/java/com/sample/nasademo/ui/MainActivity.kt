@@ -1,17 +1,12 @@
 package com.sample.nasademo.ui
 
 import android.os.Bundle
-import android.view.RoundedCorner
 import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.sample.nasademo.R
 import com.sample.nasademo.databinding.ActivityMainLayoutBinding
-import com.sample.nasademo.utility.hideView
 import com.sample.nasademo.utility.setTextOrHideView
 import com.sample.nasademo.utility.showView
 import com.sample.nasademo.viewmodels.MainViewModel
@@ -21,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
   private lateinit var binding: ActivityMainLayoutBinding
 
-  lateinit var viewModel: MainViewModel
+  private lateinit var viewModel: MainViewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

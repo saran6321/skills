@@ -1,6 +1,5 @@
 package com.sample.nasademo.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +11,6 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,7 +19,7 @@ class MainViewModel @Inject constructor(private val repo : MainRepository): View
   val nasaData: LiveData<NasaResponseData> get() = _nasaData
   companion object{
     const val apiKey = "yhCGdc68BCIoWJ8xbgsTiVB0tb7jSABZm3UdSz2w"
-    // differentiate and secure api keys during debug and release of the apk with .properties with buildfeatures
+    // differentiate and secure api keys during debug and release of the apk with .properties with build features
   }
 
   private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->

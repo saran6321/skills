@@ -11,7 +11,7 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 
-class NasaInterceptor(val nasaDatabase: NasaDatabase) : Interceptor {
+class NasaInterceptor(private val nasaDatabase: NasaDatabase) : Interceptor {
   override fun intercept(chain: Interceptor.Chain): Response {
     val response = chain.run {
       proceed(this.request())

@@ -26,6 +26,7 @@
             <TextView
                 android:id="@+id/tv_title"
                 style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_marginTop="2dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -37,7 +38,7 @@
 
             <ImageView
                 android:id="@+id/iv_nasa_image"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:layout_width="0dp"
                 android:visibility="gone"
                 android:contentDescription="@string/nasa_image"
