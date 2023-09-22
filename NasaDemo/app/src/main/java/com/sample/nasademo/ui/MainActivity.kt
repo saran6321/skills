@@ -2,11 +2,14 @@ package com.sample.nasademo.ui
 
 import android.os.Bundle
 import android.widget.MediaController
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.sample.nasademo.R
 import com.sample.nasademo.databinding.ActivityMainLayoutBinding
+import com.sample.nasademo.utility.hideView
+import com.sample.nasademo.utility.isInternetAvailable
 import com.sample.nasademo.utility.setTextOrHideView
 import com.sample.nasademo.utility.showView
 import com.sample.nasademo.viewmodels.MainViewModel
@@ -34,6 +37,7 @@ class MainActivity : AppCompatActivity() {
           tvTitle.setTextOrHideView(nasaData?.title)
           tvDesc.setTextOrHideView(nasaData?.explanation)
           tvDate.setTextOrHideView(nasaData?.date)
+          viewDivider.showView()
         } else {
           tvTitle.setTextOrHideView(tvTitle.context.getString(R.string.loading_failed))
           tvTitle.setOnClickListener {
@@ -44,7 +48,14 @@ class MainActivity : AppCompatActivity() {
         }
       }
     }
-    viewModel.getTodayImage()
+    if (isInternetAvailable(this)) {
+      viewModel.getTodayImage()
+    } else {
+      Toast.makeText(this, "Please check your network connection !", Toast.LENGTH_LONG).show()
+      binding.tvTitle.setTextOrHideView(binding.tvTitle.context.getString(R.string.check_network))
+      binding.tvVideoTitle.hideView()
+      binding.vvVideo.hideView()
+    }
 
     with(binding.vvVideo) {
       val mediaController = MediaController(context)

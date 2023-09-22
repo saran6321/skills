@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/white"
-    android:padding="1dp"
     tools:context=".ui.MainActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -24,16 +23,32 @@
             tools:context=".ui.MainActivity">
 <!--Use value file to set margin, paddings -->
             <TextView
+                android:id="@+id/app_title"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:textSize="25sp"
+                android:layout_marginTop="5dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/text_nasa_demo"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/text_nasa_demo" />
+
+            <TextView
                 android:id="@+id/tv_title"
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_marginTop="2dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
+                android:textStyle="bold"
                 android:text="@string/text_loading"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_nasa_image"
                 tools:text="Title" />
 
             <ImageView
@@ -45,7 +60,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_title" />
+                app:layout_constraintTop_toBottomOf="@id/app_title" />
 
             <TextView
                 android:id="@+id/tv_desc"
@@ -53,11 +68,11 @@
                 android:layout_marginTop="2dp"
                 android:layout_width="0dp"
                 android:visibility="gone"
-                android:padding="5dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_nasa_image"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
                 tools:text="Desc" />
 
             <TextView
@@ -78,6 +93,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="4dp"
+                android:visibility="gone"
                 android:background="@color/grey"
                 app:layout_constraintTop_toBottomOf="@id/tv_date"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,6 +106,7 @@
                 android:layout_width="0dp"
                 android:textAlignment="center"
                 android:text="@string/text_big_bunny"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

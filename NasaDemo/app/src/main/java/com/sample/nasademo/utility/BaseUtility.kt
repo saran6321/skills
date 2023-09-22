@@ -1,5 +1,8 @@
 package com.sample.nasademo.utility
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.view.View
 import android.widget.TextView
 
@@ -18,4 +21,11 @@ fun TextView.setTextOrHideView(value: String?) {
   } else {
     this.hideView()
   }
+}
+
+fun isInternetAvailable(context: Context): Boolean {
+  val connectivityManager =
+    context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+  val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
+  return networkInfo != null && networkInfo.isConnected
 }

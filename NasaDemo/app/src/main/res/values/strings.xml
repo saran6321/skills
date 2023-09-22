@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">NasaDemo</string>
     <string name="text_big_bunny">Big Bunny</string>
+    <string name="text_nasa_demo">NASA</string>
     <string name="text_loading">Loading Today Nasa News....</string>
     <string name="nasa_image">Nasa Image</string>
     <string name="loading_failed">Loading failed...click to retry !</string>
+    <string name="check_network">Please check your network connection !</string>
 </resources>
