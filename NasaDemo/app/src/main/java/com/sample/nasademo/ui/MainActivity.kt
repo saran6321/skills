@@ -31,14 +31,14 @@ class MainActivity : AppCompatActivity() {
 
     viewModel.nasaData.observe(this) { nasaData ->
       with(binding) {
-        if (nasaData.isSuccess) {
+        if (nasaData.isSuccess) {                 // loads the success data
           Glide.with(ivNasaImage.context).load(nasaData?.url).into(ivNasaImage)
           ivNasaImage.showView()
           tvTitle.setTextOrHideView(nasaData?.title)
           tvDesc.setTextOrHideView(nasaData?.explanation)
           tvDate.setTextOrHideView(nasaData?.date)
           viewDivider.showView()
-        } else {
+        } else {                                  // Allows user to retry loading on api failure
           tvTitle.setTextOrHideView(tvTitle.context.getString(R.string.loading_failed))
           tvTitle.setOnClickListener {
             viewModel.getTodayImage()
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         }
       }
     }
-    if (isInternetAvailable(this)) {
+    if (isInternetAvailable(this)) {      // checks for the internet availability
       viewModel.getTodayImage()
     } else {
       Toast.makeText(this, "Please check your network connection !", Toast.LENGTH_LONG).show()
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
       binding.vvVideo.hideView()
     }
 
-    with(binding.vvVideo) {
+    with(binding.vvVideo) {         // video player with controls
       val mediaController = MediaController(context)
       mediaController.setAnchorView(this)
       setMediaController(mediaController)

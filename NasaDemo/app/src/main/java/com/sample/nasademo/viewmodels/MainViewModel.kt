@@ -29,6 +29,8 @@ class MainViewModel @Inject constructor(private val repo : MainRepository): View
   fun getTodayImage() = viewModelScope.launch(Dispatchers.IO + SupervisorJob() + exceptionHandler) {
     try {
       val res = repo.getTodayImage(apiKey)
+      // Returns the response from api if its success
+      // On api failure, returns cache if available else returns the failed response
       if (res?.isSuccessful == true) {
         _nasaData.postValue(res.body())
       } else {
@@ -36,6 +38,7 @@ class MainViewModel @Inject constructor(private val repo : MainRepository): View
       }
     } catch (e: Exception) {
       e.printStackTrace()
+      _nasaData.postValue(NasaResponseData(isSuccess = false))
     }
   }
 }

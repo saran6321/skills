@@ -16,7 +16,7 @@ class NasaInterceptor(private val nasaDatabase: NasaDatabase) : Interceptor {
     val response = chain.run {
       proceed(this.request())
     }
-
+    // intercepts the api response and does caching process
     return cacheResponse(response)
   }
 
@@ -41,6 +41,8 @@ class NasaInterceptor(private val nasaDatabase: NasaDatabase) : Interceptor {
   }
 
   private fun cacheResponse(response: Response): Response {
+    // caches the successful response to local database from the api
+    // Returns the cached response on api failure
     return try {
       if (response.isSuccessful) {
         saveResponse(response)
