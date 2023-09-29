@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sample.nasademo.data.db.NasaDatabase
+import com.sample.nasademo.data.db.TaskDao
+import com.sample.nasademo.data.db.TaskData
 import com.sample.nasademo.data.network.response.NasaResponseData
 import com.sample.nasademo.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,6 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val repo : MainRepository): ViewModel() {
+  @Inject lateinit var nasaDatabase: NasaDatabase
+  @Inject lateinit var taskDao: TaskDao
   private val _nasaData = MutableLiveData<NasaResponseData>()
   val nasaData: LiveData<NasaResponseData> get() = _nasaData
   companion object{
@@ -39,6 +44,12 @@ class MainViewModel @Inject constructor(private val repo : MainRepository): View
     } catch (e: Exception) {
       e.printStackTrace()
       _nasaData.postValue(NasaResponseData(isSuccess = false))
+    }
+  }
+
+  fun insertTask(task: String) {
+    viewModelScope.launch(Dispatchers.IO + SupervisorJob()){
+      taskDao.insertTask(TaskData(task = task))
     }
   }
 }

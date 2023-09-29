@@ -5,8 +5,11 @@ import android.widget.MediaController
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.sample.nasademo.R
+import com.sample.nasademo.data.db.NasaDatabase
+import com.sample.nasademo.data.db.TaskData
 import com.sample.nasademo.databinding.ActivityMainLayoutBinding
 import com.sample.nasademo.utility.hideView
 import com.sample.nasademo.utility.isInternetAvailable
@@ -14,6 +17,10 @@ import com.sample.nasademo.utility.setTextOrHideView
 import com.sample.nasademo.utility.showView
 import com.sample.nasademo.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.Dispatcher
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -28,6 +35,11 @@ class MainActivity : AppCompatActivity() {
     setContentView(binding.root)
 
     viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+    lifecycleScope.launch {
+      repeat(10){
+        viewModel.insertTask("Task $it")
+      }
+    }
 
     viewModel.nasaData.observe(this) { nasaData ->
       with(binding) {
