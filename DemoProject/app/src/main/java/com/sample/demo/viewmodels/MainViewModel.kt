@@ -5,10 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sample.demo.data.db.CacheDatabase
-import com.sample.demo.data.db.TaskDao
-import com.sample.demo.data.db.TaskData
-import com.sample.demo.data.network.response.NasaResponseData
+import com.sample.demo.data.db.CartDao
+import com.sample.demo.data.network.response.Item
+import com.sample.demo.data.network.response.ProductResponseData
 import com.sample.demo.repository.MainRepository
+import com.sample.demo.utility.orDefaultDouble
+import com.sample.demo.utility.orDefaultInt
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -19,37 +21,66 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(private val repo : MainRepository): ViewModel() {
   @Inject lateinit var mCacheDatabase: CacheDatabase
-  @Inject lateinit var taskDao: TaskDao
-  private val _nasaData = MutableLiveData<NasaResponseData>()
-  val nasaData: LiveData<NasaResponseData> get() = _nasaData
-  companion object{
-    const val apiKey = "yhCGdc68BCIoWJ8xbgsTiVB0tb7jSABZm3UdSz2w"
-    // differentiate and secure api keys during debug and release of the apk with .properties with build features
-  }
+  @Inject lateinit var cartDao: CartDao
+  private val _productsData = MutableLiveData<ProductResponseData?>()
+  val productsData: LiveData<ProductResponseData?> get() = _productsData
 
   private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
     throwable.printStackTrace()
   }
 
-  fun getTodayImage() = viewModelScope.launch(Dispatchers.IO + SupervisorJob() + exceptionHandler) {
+  fun getProducts() = viewModelScope.launch(Dispatchers.IO + SupervisorJob() + exceptionHandler) {
     try {
-      val res = repo.getTodayImage(apiKey)
+      val res = repo.getProducts()
       // Returns the response from api if its success
       // On api failure, returns cache if available else returns the failed response
       if (res?.isSuccessful == true) {
-        _nasaData.postValue(res.body())
+        _productsData.postValue(res.body())
       } else {
-        _nasaData.postValue(NasaResponseData(isSuccess = false))
+        _productsData.postValue(ProductResponseData(status = false))
       }
     } catch (e: Exception) {
       e.printStackTrace()
-      _nasaData.postValue(NasaResponseData(isSuccess = false))
+      _productsData.postValue(ProductResponseData(status = false))
     }
   }
 
-  fun insertTask(task: String) {
+  fun addToCart(item: Item) {
     viewModelScope.launch(Dispatchers.IO + SupervisorJob()){
-      taskDao.insertTask(TaskData(task = task))
+      item.id?.let {
+        var cart = cartDao.getCart(it)
+        cart?.let { cartItem ->
+          cartItem.count = cartItem.count?.plus(1).orDefaultInt(0)
+        } ?: kotlin.run {
+          item.count = 1
+          cart = item
+        }
+        cart?.total = cart?.price.orDefaultDouble(0.0) * cart?.count.orDefaultInt(0)
+        cart?.let { it1 -> cartDao.insertCart(it1) }
+      }
     }
   }
+
+  fun removeCartItem(item: Item) {
+    viewModelScope.launch(Dispatchers.IO + SupervisorJob()){
+      item.id?.let {
+        val cart = cartDao.getCart(it)
+        cart?.let { cartItem ->
+          if (cartItem.count.orDefaultInt(0) > 0) {
+            cartItem.count = cartItem.count?.minus(1).orDefaultInt(0)
+            cartItem.total = cartItem.price.orDefaultDouble(0.0) * cartItem.count.orDefaultInt(0)
+            cartItem.let { it1 -> cartDao.insertCart(it1) }
+          } else {
+            cartDao.deleteCart(cartItem)
+          }
+        }
+      }
+    }
+  }
+
+  fun getCartsData() = cartDao.getAllCarts()
+
+  fun getCartsCount() = cartDao.getCartsCount()
+
+  fun getCartsTotal() = cartDao.getCartsTotal()
 }

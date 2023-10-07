@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.sample.demo.data.db.CacheDatabase
-import com.sample.demo.data.db.TaskDao
+import com.sample.demo.data.db.CartDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +20,7 @@ class DataBaseModule {
       .addMigrations(migration1to2)
       .fallbackToDestructiveMigration().build()
 
-  @Provides fun providesTaskDao(cacheDatabase: CacheDatabase): TaskDao = cacheDatabase.dataDao()
+  @Provides fun providesCartDao(cacheDatabase: CacheDatabase): CartDao = cacheDatabase.cartDao()
 
   companion object {
     const val DATABASE_NAME = "caches.db"

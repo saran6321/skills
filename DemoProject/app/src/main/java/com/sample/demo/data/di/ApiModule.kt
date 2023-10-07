@@ -1,7 +1,7 @@
 package com.sample.demo.data.di
 
 import com.sample.demo.data.db.CacheDatabase
-import com.sample.demo.data.network.NasaApi
+import com.sample.demo.data.network.ProductsApi
 import com.sample.demo.data.network.ApiInterceptor
 import dagger.Module
 import dagger.Provides
@@ -28,9 +28,9 @@ class ApiModule {
     Retrofit.Builder().baseUrl(BASE_URL).client(okHttpClient).addConverterFactory(GsonConverterFactory.create()).build()
 
   @Provides
-  fun providesNasaApi(retrofit: Retrofit): NasaApi = retrofit.create(NasaApi::class.java)
+  fun providesProductsApi(retrofit: Retrofit): ProductsApi = retrofit.create(ProductsApi::class.java)
 
   companion object {
-    const val BASE_URL = "https://api.nasa.gov/"
+    const val BASE_URL = "https://skarapp2.free.beeceptor.com/"
   }
 }

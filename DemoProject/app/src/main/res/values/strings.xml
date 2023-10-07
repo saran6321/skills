@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">DemoApp</string>
+    <string name="text_my_store">My Store</string>
+    <string name="text_arrow">arrow</string>
     <string name="text_big_bunny">Big Bunny</string>
     <string name="text_nasa_demo">NASA</string>
     <string name="text_loading">Loading Today Nasa News....</string>
     <string name="nasa_image">Nasa Image</string>
     <string name="loading_failed">Loading failed...click to retry !</string>
     <string name="check_network">Please check your network connection !</string>
+    <string name="text_cart">Cart</string>
+    <string name="text_total">Total\n</string>
+    <string name="checkout">Checkout</string>
+    <string name="price_per_kg">₹%s/kg</string>
+    <string name="text_free">Free</string>
 </resources>

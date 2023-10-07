@@ -5,6 +5,17 @@ plugins {
   id("com.google.dagger.hilt.android")
 }
 
+// build script for groupie
+buildscript {
+  repositories {
+    google()
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21")
+  }
+}
+
 android {
   namespace = "com.sample.demo"
   compileSdk = 34
@@ -49,6 +60,7 @@ dependencies {
   implementation("androidx.core:core-ktx:1.12.0")
   implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
   implementation("androidx.appcompat:appcompat:1.6.1")
+  implementation("com.google.android.material:material:1.10.0")
   implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
   implementation("androidx.constraintlayout:constraintlayout:2.1.4")
   implementation("androidx.navigation:navigation-fragment-ktx:2.7.2")
@@ -76,5 +88,9 @@ dependencies {
   implementation("androidx.room:room-runtime:2.5.2")
   annotationProcessor("androidx.room:room-compiler:2.5.2")
   kapt("androidx.room:room-compiler:2.5.2")
+
+  //groupie
+  implementation("com.github.lisawray.groupie:groupie:2.10.1")
+  implementation("com.github.lisawray.groupie:groupie-viewbinding:2.10.1")
 
 }

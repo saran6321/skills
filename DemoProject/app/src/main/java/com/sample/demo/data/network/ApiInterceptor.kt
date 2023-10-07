@@ -1,5 +1,6 @@
 package com.sample.demo.data.network
 
+import android.util.Log
 import com.sample.demo.data.db.ApiCaches
 import com.sample.demo.data.db.CacheDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -44,9 +45,11 @@ class ApiInterceptor(private val cacheDatabase: CacheDatabase) : Interceptor {
     // caches the successful response to local database from the api
     // Returns the cached response on api failure
     return try {
-      if (response.isSuccessful) {
+      if (response.isSuccessful && response.peekBody(Long.MAX_VALUE).string().isNotEmpty()) {
+        Log.d("saran","success response $response")
         saveResponse(response)
       } else {
+        Log.d("saran","response from cache")
         fetchResponseFromDb(response)
       }
     } catch (e: Exception) {

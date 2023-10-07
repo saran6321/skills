@@ -1,75 +1,119 @@
 package com.sample.demo.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.MediaController
+import android.util.Log
+import android.view.Menu
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.Glide
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.sample.demo.R
+import com.sample.demo.adapter.ProductExpandableGroupItem
+import com.sample.demo.adapter.ProductsList
+import com.sample.demo.communicators.IActivityCommunicator
+import com.sample.demo.data.network.response.Category
+import com.sample.demo.data.network.response.Item
 import com.sample.demo.databinding.ActivityMainLayoutBinding
-import com.sample.demo.utility.hideView
 import com.sample.demo.utility.isInternetAvailable
-import com.sample.demo.utility.setTextOrHideView
-import com.sample.demo.utility.showView
+import com.sample.demo.utility.launchWhenResumed
+import com.sample.demo.utility.orDefaultInt
 import com.sample.demo.viewmodels.MainViewModel
+import com.xwray.groupie.ExpandableGroup
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Section
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), IActivityCommunicator {
   private lateinit var binding: ActivityMainLayoutBinding
-
   private lateinit var viewModel: MainViewModel
+  private val productSection by lazy {
+    Section().apply {
+      setHideWhenEmpty(true)
+    }
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     binding = ActivityMainLayoutBinding.inflate(layoutInflater)
     setContentView(binding.root)
-
+    window?.statusBarColor = ContextCompat.getColor(binding.root.context, R.color.yellow_end)
+    setSupportActionBar(binding.toolBar)
     viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-    lifecycleScope.launch {
-      repeat(10){
-        viewModel.insertTask("Task $it")
+
+    with(binding.rvProducts) {
+      layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+      clipToPadding = false
+      adapter = GroupAdapter<GroupieViewHolder>().apply {
+        add(productSection)
       }
     }
 
-    viewModel.nasaData.observe(this) { nasaData ->
-      with(binding) {
-        if (nasaData.isSuccess) {                 // loads the success data
-          Glide.with(ivNasaImage.context).load(nasaData?.url).into(ivNasaImage)
-          ivNasaImage.showView()
-          tvTitle.setTextOrHideView(nasaData?.title)
-          tvDesc.setTextOrHideView(nasaData?.explanation)
-          tvDate.setTextOrHideView(nasaData?.date)
-          viewDivider.showView()
-        } else {                                  // Allows user to retry loading on api failure
-          tvTitle.setTextOrHideView(tvTitle.context.getString(R.string.loading_failed))
-          tvTitle.setOnClickListener {
-            viewModel.getTodayImage()
-            tvTitle.setTextOrHideView(tvTitle.context.getString(R.string.text_loading))
-            tvTitle.setOnClickListener(null)
+    viewModel.productsData.observe(this) { productsData ->
+      if (productsData?.status == true) {                 // loads the success data
+        launchWhenResumed {
+          val sectionList = mutableListOf<ExpandableGroup>()
+          productsData.categories?.forEach {
+            if (!it.items.isNullOrEmpty()){
+              Log.d("saran", "section list creation")
+              sectionList.add(produceExpandableGroup(it))
+            }
+          }
+          if (sectionList.isNotEmpty()) {
+            Log.d("saran", "section list not empty")
+            productSection.clear()
+            productSection.addAll(sectionList)
+          } else {
+            Log.d("saran", "section list empty")
           }
         }
+      } else {                                  // Allows user to retry loading on api failure
+        Toast.makeText(this,"Server Down !",Toast.LENGTH_SHORT).show()
       }
     }
     if (isInternetAvailable(this)) {      // checks for the internet availability
-      viewModel.getTodayImage()
+      viewModel.getProducts()
     } else {
+      viewModel.getProducts()
       Toast.makeText(this, "Please check your network connection !", Toast.LENGTH_LONG).show()
-      binding.tvTitle.setTextOrHideView(binding.tvTitle.context.getString(R.string.check_network))
-      binding.tvVideoTitle.hideView()
-      binding.vvVideo.hideView()
+    }
+  }
+
+  private fun produceExpandableGroup(category: Category): ExpandableGroup =
+    ExpandableGroup(ProductExpandableGroupItem(category.name)).apply {
+      isExpanded = true
+      category.items?.let {
+        add(ProductsList(it, this@MainActivity))
+      }
     }
 
-    with(binding.vvVideo) {         // video player with controls
-      val mediaController = MediaController(context)
-      mediaController.setAnchorView(this)
-      setMediaController(mediaController)
-      setVideoURI(android.net.Uri.parse("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"))
-      start()
+  override fun addToCart(item: Item) {
+    viewModel.addToCart(item)
+    Toast.makeText(this,"Added ${item.name}",Toast.LENGTH_SHORT).show()
+  }
+
+  override fun removeCartItem(item: Item) {
+    viewModel.removeCartItem(item)
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.menu_item, menu)
+    val menuItem = menu?.findItem(R.id.menu_cart)
+    menuItem?.setActionView(R.layout.layout_cart_icon)
+    viewModel.getCartsCount().observe(this) {
+      menuItem?.actionView?.findViewById<TextView>(R.id.tv_count)?.text =
+        it.orDefaultInt(0).toString()
     }
+    menuItem?.actionView?.findViewById<ConstraintLayout>(R.id.cl_cart)?.setOnClickListener {
+      startActivity(Intent(this@MainActivity, CartActivity::class.java))
+    }
+    return true
   }
 }

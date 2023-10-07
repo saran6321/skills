@@ -1,8 +1,8 @@
 package com.sample.demo.repository
 
-import com.sample.demo.data.network.NasaApi
+import com.sample.demo.data.network.ProductsApi
 
-class MainRepository(private val nasaApi: NasaApi) {
+class MainRepository(private val productsApi: ProductsApi) {
 
-  suspend fun getTodayImage(apiKey : String) = nasaApi.getTodayImage(apiKey)
+  suspend fun getProducts() = productsApi.getProducts()
 }
