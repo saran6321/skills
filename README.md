@@ -11,7 +11,7 @@ https://github.com/saran6321/skills/assets/56368393/ad8bb4a0-209c-4ef5-9493-65c9
 
 - MVVM Architecture
 - Retrofit api handling 
-- HILT Dependency Injection
+- DAGGER HILT Dependency Injection
 - ROOM Database Caching with liveData update
 - Group adapter with optimised recycler view
 - Coroutine
