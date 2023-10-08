@@ -1,12 +1,6 @@
 # Description
 This project showcases different set of android topics with a simple store app.
 
-## RECORDING
-
-https://github.com/saran6321/skills/assets/56368393/6637f3f5-4d47-43ff-a65a-ab74c7d3bcbd
-
-https://github.com/saran6321/skills/assets/56368393/ad8bb4a0-209c-4ef5-9493-65c9fc274775
-
 ## COVERED
 
 - MVVM Architecture
@@ -20,3 +14,12 @@ https://github.com/saran6321/skills/assets/56368393/ad8bb4a0-209c-4ef5-9493-65c9
 - Coding Standard
 - Code Optimisation
 - Git and more...
+
+## RECORDING
+
+https://github.com/saran6321/skills/assets/56368393/9309bd66-d268-4b5a-a250-21fd245924a4
+
+https://github.com/saran6321/skills/assets/56368393/6637f3f5-4d47-43ff-a65a-ab74c7d3bcbd
+
+https://github.com/saran6321/skills/assets/56368393/ad8bb4a0-209c-4ef5-9493-65c9fc274775
+
