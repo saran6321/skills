@@ -78,6 +78,7 @@ class MainActivity : AppCompatActivity(), IActivityCommunicator {
         Toast.makeText(this,"Server Down !",Toast.LENGTH_SHORT).show()
       }
     }
+
     if (isInternetAvailable(this)) {      // checks for the internet availability
       viewModel.getProducts()
     } else {
@@ -103,16 +104,27 @@ class MainActivity : AppCompatActivity(), IActivityCommunicator {
     viewModel.removeCartItem(item)
   }
 
+  override fun addOrRemoveFavourite(item: Item) {
+    viewModel.addOrRemoveFavourite(item)
+  }
+
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
     menuInflater.inflate(R.menu.menu_item, menu)
-    val menuItem = menu?.findItem(R.id.menu_cart)
-    menuItem?.setActionView(R.layout.layout_cart_icon)
+    val menuCartItem = menu?.findItem(R.id.menu_cart)?.setActionView(R.layout.layout_cart_icon)
+    val menuFavItem = menu?.findItem(R.id.menu_favourite)?.setActionView(R.layout.layout_favourites_icon)
     viewModel.getCartsCount().observe(this) {
-      menuItem?.actionView?.findViewById<TextView>(R.id.tv_count)?.text =
+      menuCartItem?.actionView?.findViewById<TextView>(R.id.tv_cart_count)?.text =
         it.orDefaultInt(0).toString()
     }
-    menuItem?.actionView?.findViewById<ConstraintLayout>(R.id.cl_cart)?.setOnClickListener {
+    viewModel.getFavouritesCount().observe(this) {
+      menuFavItem?.actionView?.findViewById<TextView>(R.id.tv_fav_count)?.text =
+        it.orDefaultInt(0).toString()
+    }
+    menuCartItem?.actionView?.findViewById<ConstraintLayout>(R.id.cl_cart)?.setOnClickListener {
       startActivity(Intent(this@MainActivity, CartActivity::class.java))
+    }
+    menuFavItem?.actionView?.findViewById<ConstraintLayout>(R.id.cl_fav)?.setOnClickListener {
+      startActivity(Intent(this@MainActivity, FavouritesActivity::class.java))
     }
     return true
   }

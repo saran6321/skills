@@ -13,4 +13,8 @@
     <string name="checkout">Checkout</string>
     <string name="price_per_kg">₹%s/kg</string>
     <string name="text_free">Free</string>
+    <string name="text_favourite">Favourite</string>
+    <string name="text_discount">Discount</string>
+    <string name="value_0">0</string>
+    <string name="product_image">product image</string>
 </resources>

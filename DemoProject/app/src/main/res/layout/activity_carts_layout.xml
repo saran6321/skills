@@ -11,6 +11,7 @@
         android:id="@+id/iv_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/text_arrow"
         android:src="@drawable/arrow_left_white_grey_corner"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,20 +62,44 @@
         app:layout_constraintTop_toBottomOf="@id/rv_carts"
         app:layout_constraintBottom_toTopOf="@id/bt_checkout"
         android:background="@drawable/background_grey_rounded">
+
         <TextView
-            android:id="@+id/tv_total_label"
-            android:textStyle="bold"
+            android:id="@+id/tv_discount_label"
             android:textColor="@color/gray10"
             android:layout_width="0dp"
-            android:text="@string/text_total"
+            android:text="@string/text_discount"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_total_value"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintTop_toTopOf="parent"/>
         <TextView
+            android:id="@+id/tv_discount_value"
+            android:text="@string/value_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tv_discount_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_discount_label"
+            app:layout_constraintHorizontal_bias="1"/>
+
+        <TextView
+            android:id="@+id/tv_total_label"
+            android:textStyle="bold"
+            android:textColor="@color/gray10"
+            android:layout_marginTop="4dp"
+            android:layout_width="0dp"
+            android:text="@string/text_total"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_total_value"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_discount_label"/>
+        <TextView
             android:id="@+id/tv_total_value"
-            android:text="0"
+            android:textStyle="bold"
+            android:text="@string/value_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/tv_total_label"

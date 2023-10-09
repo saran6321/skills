@@ -28,6 +28,9 @@
         <activity
             android:name="com.sample.demo.ui.CartActivity"
             android:exported="true" />
+        <activity
+            android:name="com.sample.demo.ui.FavouritesActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

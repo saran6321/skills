@@ -10,5 +10,6 @@ data class Item(
   val icon: String? = null,
   val price: Double? = null,
   var count: Int? = 0,
-  var total: Double? = 0.0
+  var total: Double? = 0.0,
+  var isFavourite: Boolean = false
 )

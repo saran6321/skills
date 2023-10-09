@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cl_cart"
+    android:id="@+id/cl_fav"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="10dp">
@@ -10,21 +10,21 @@
         android:id="@+id/iv_product"
         android:layout_height="20dp"
         android:layout_width="20dp"
-        android:contentDescription="@string/text_cart"
+        android:contentDescription="heart"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/ic_bag"
+        android:src="@drawable/ic_heart_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_cart_count"
+        android:id="@+id/tv_fav_count"
         android:textSize="8sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="3dp"
         android:background="@drawable/background_red_rounded"
         android:textColor="@color/white"
-        android:text="@string/value_0"
+        android:text="1"
         app:layout_constraintTop_toTopOf="@id/iv_product"
         app:layout_constraintEnd_toEndOf="@id/iv_product"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

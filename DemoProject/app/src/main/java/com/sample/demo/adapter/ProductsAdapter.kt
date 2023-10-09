@@ -3,8 +3,10 @@ package com.sample.demo.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.sample.demo.R
 import com.sample.demo.communicators.IActivityCommunicator
 import com.sample.demo.data.network.response.Item
 import com.sample.demo.databinding.ProductItemBinding
@@ -35,8 +37,18 @@ class ProductsAdapter(
         Glide.with(ivProduct.context).load(productItem.icon).into(ivProduct)
         tvProductTitle.setTextOrHideView(productItem.name)
         tvPrice.setPriceOrHideView(productItem.price)
-        ivAddCart.setOnClickListener {
+        btAddCart.setOnClickListener {
           iActivityCommunicator.addToCart(productItem)
+        }
+        btFavourite.setOnClickListener{
+          iActivityCommunicator.addOrRemoveFavourite(productItem)
+          if (productItem.isFavourite) {
+            btFavourite.background =
+              ContextCompat.getDrawable(btFavourite.context, R.drawable.ic_heart_grey)
+          } else {
+            btFavourite.background =
+              ContextCompat.getDrawable(btFavourite.context, R.drawable.ic_heart_red)
+          }
         }
       }
     }

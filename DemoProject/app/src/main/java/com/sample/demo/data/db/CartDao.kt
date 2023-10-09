@@ -17,6 +17,12 @@ interface CartDao {
   @Query("SELECT * FROM carts")
   fun getAllCarts(): LiveData<List<Item>?>
 
+  @Query("SELECT * FROM carts WHERE isFavourite=1")
+  fun getFavouriteItems(): LiveData<List<Item>?>
+
+  @Query("SELECT COUNT(*) FROM carts WHERE isFavourite=1")
+  fun getFavouriteItemsCount(): LiveData<Int?>
+
   @Query("SELECT SUM(count) FROM carts")
   fun getCartsCount(): LiveData<Int>
 

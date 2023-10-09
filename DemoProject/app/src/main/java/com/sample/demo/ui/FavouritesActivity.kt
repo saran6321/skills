@@ -5,39 +5,33 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sample.demo.adapter.CartsAdapter
+import com.sample.demo.adapter.FavouritesAdapter
 import com.sample.demo.communicators.IActivityCommunicator
 import com.sample.demo.data.network.response.Item
-import com.sample.demo.databinding.ActivityCartsLayoutBinding
-import com.sample.demo.utility.orDefaultDouble
-import com.sample.demo.utility.setPriceOrHideView
+import com.sample.demo.databinding.ActivityFavouritesLayoutBinding
 import com.sample.demo.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.roundToInt
 
 @AndroidEntryPoint
-class CartActivity : AppCompatActivity(), IActivityCommunicator {
-  private lateinit var binding: ActivityCartsLayoutBinding
+class FavouritesActivity : AppCompatActivity(), IActivityCommunicator {
+  private lateinit var binding: ActivityFavouritesLayoutBinding
   private lateinit var viewModel: MainViewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    binding = ActivityCartsLayoutBinding.inflate(layoutInflater)
+    binding = ActivityFavouritesLayoutBinding.inflate(layoutInflater)
     setContentView(binding.root)
     viewModel = ViewModelProvider(this)[MainViewModel::class.java]
     binding.ivBack.setOnClickListener {
       finish()
     }
-    with(binding.rvCarts) {
+    with(binding.rvFavourites) {
       layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
       clipToPadding = false
-      viewModel.getCartsData().observe(this@CartActivity){
-        adapter = CartsAdapter(it.orEmpty(), this@CartActivity)
+      viewModel.getFavourites().observe(this@FavouritesActivity){
+        adapter = FavouritesAdapter(it.orEmpty(), this@FavouritesActivity)
       }
-    }
-    viewModel.getCartsTotal()?.observe(this){
-      binding.tvTotalValue.setPriceOrHideView(it.orDefaultDouble(0.0).roundToInt().toDouble())
     }
   }
 

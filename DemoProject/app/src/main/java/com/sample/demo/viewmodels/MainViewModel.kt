@@ -83,4 +83,21 @@ class MainViewModel @Inject constructor(private val repo : MainRepository): View
   fun getCartsCount() = cartDao.getCartsCount()
 
   fun getCartsTotal() = cartDao.getCartsTotal()
+
+  fun addOrRemoveFavourite(item: Item) {
+    viewModelScope.launch(Dispatchers.IO + SupervisorJob()){
+      item.id?.let {
+        var cart = cartDao.getCart(it)
+        cart?.let { cartItem ->
+          cartItem.isFavourite = !cartItem.isFavourite
+        } ?: kotlin.run {
+          item.isFavourite = true
+          cart = item
+        }
+        cart?.let { it1 -> cartDao.insertCart(it1) }
+      }
+    }
+  }
+  fun getFavourites() = cartDao.getFavouriteItems()
+  fun getFavouritesCount() = cartDao.getFavouriteItemsCount()
 }
