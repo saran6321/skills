@@ -13,6 +13,7 @@ This project showcases different set of android topics with a simple store app.
 - Interface handling
 - Coding Standard
 - Code Optimisation
+- Glide Image loading with caching
 - Git and more...
 
 ## RECORDING
