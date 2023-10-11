@@ -16,4 +16,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "DemoProject"
 include(":app")
+include(":jk")
  
