@@ -1,13 +1,16 @@
 package com.skar.jk.java;
 
-public class MainClass {
+public class MainClass extends SecondClass {
     MainInterface interfaceObject = null;
     private int INTEGER = 0;
     public MainClass(){
+        super(0);   // initialise the parent constructor using super keyword if needed
+        this.secondClassVariable = 8;
         // default constructor
     }
 
     public MainClass(int INTEGER){
+        super(0);
         // this is used to access this instance of the class
         // constructor overloading
         this.INTEGER = INTEGER;

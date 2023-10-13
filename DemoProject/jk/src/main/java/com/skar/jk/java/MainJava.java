@@ -34,25 +34,65 @@ public class MainJava extends AbstractClass implements MainInterface {
     }
 
     private static void tableOfContents() {
-        javaFacts();
-        basics();
-        math();
-        oops();
+        basics();   // in out, data types, operator, conditional statements, looping
         string();
         arrays();
         dataStructures();
         algorithms();
-        problems();
+        problemsAndAlgorithms();
+        javaFacts();
+        math();
+        oops();
+    }
+
+    private static void defaultMethods() {
+
     }
 
     private static void math() {
         Math.max(1,2);
+        Math.pow(3,2);
     }
 
     private static void javaFacts() {
         /*
+        *
+        * java was created for interactive television
+        *
+        *java does not have pointers, operator overloading
+        *
+        * java has automatic garbage collectors
+        *
+        * runs top on hardware based platforms and has two components, runtime environment and application programming interface
+        *
         * platform independent
-        * does not depend on hardware compiler compiles to byte code which can be run in any system with JRE
+        * does not depend on hardware compiler compiles to byte code which can be run in any system with JRE with virtual machines
+        *
+        * compile time
+        * .java -> compiler -> .class byte code
+        *
+        * run time
+        * class file -> class loader -> bytecode verified -> interpreter -> runtime -> hardware
+        *
+        * platform dependent
+        * jvm
+        * provides java runtime environment for the machine
+        * jre
+        * it provides set of tools for developing java application
+        * jdk
+        * this provides jre and development tools for java development
+        *
+        * acceptable
+        * public static void main(String[] args)
+        * public static void main(String []args)
+        * public static void main(String args[])
+        * public static void main(String... args)   vararg support as well
+        *
+        * java can have semicolon at the end of the class if needed
+        *
+        * main method can be final and it is valid
+        * main method must always be public
+        * main method cannot be abstract
         *
         * not a fully oops language
         * as it still supports primitive data types
@@ -88,10 +128,6 @@ public class MainJava extends AbstractClass implements MainInterface {
         *
         * can static method be overridden
         * override no, as they are loaded and looked up during compile time
-        *
-        *public static void main(String args[])
-        *public static void main(String[] args)
-        *both are acceptable array representation in java
         *
         * overloading and overriding
         *overloading same method with different representation
@@ -140,6 +176,7 @@ public class MainJava extends AbstractClass implements MainInterface {
     }
 
     private static void dataStructures() {
+        //o(n) o(logn)
         String[] STRINGS = {"bmw","benz","audi"};
 
         // All these extends -> collection which extends -> iterable
@@ -184,6 +221,18 @@ public class MainJava extends AbstractClass implements MainInterface {
         MAP.getOrDefault(0,1);
         MAP.putIfAbsent(0,1);
         MAP.replace(0,5);           // only does replacing and returns old value
+
+        //iteration
+        //list and set
+        for (String i : ALIST) {
+            i.toString();
+        }
+
+        //map
+        for (Integer i : MAP.keySet()){
+            MAP.getOrDefault(i, 1);
+        }
+
     }
 
     private static void arrays() {
@@ -228,13 +277,6 @@ public class MainJava extends AbstractClass implements MainInterface {
 
     private static void string() {
         // String is not a type but a CLASS, each string is an object can be created with new keyword
-        // STRING BUIILDER
-        StringBuilder sb = new StringBuilder("sarankumar");
-        sb.append("");
-        sb.replace(0,5,"replace with");
-        sb.reverse();
-        sb.toString();
-
         // CHAR ARRAY
         char[] CHARSTRING = {'s','a','r','a','n'};
 
@@ -278,6 +320,13 @@ public class MainJava extends AbstractClass implements MainInterface {
         for (int i = 0; i < STRING.length(); i++) {
             STRING.charAt(i);
         }
+
+        // STRING BUIILDER
+        StringBuilder sb = new StringBuilder("sarankumar");
+        sb.append("");
+        sb.replace(0,5,"replace with");
+        sb.reverse();
+        sb.toString();
     }
 
     private static void basics() {
@@ -285,33 +334,41 @@ public class MainJava extends AbstractClass implements MainInterface {
         // sc.nextLine();sc.next();  get the inputs
 
         // DATA TYPES
-        int INTEGER = 16;
-        double PRICE = 10.0;
-        long LONG = 5L;
-        float FLOAT = 5F;
-        char CHARACTER = 's';
-        boolean BOOLEAN = true;
+        byte BYTE = 0;                  // 1 byte   min -128    max 127
+        boolean BOOLEAN = false;        // 1 bit
+        char CHARACTER = '\u0000';      // 2 byte   java uses unicode system and not ascii system this is the lowest value, highest value = \uFFFF
+        short SHORT = 0;                // 2 byte
+        int INT = 0;   // 4 byte int cannot be null while Integer type can be null that's a reason to be used in collection
+        float FLOAT = 0.0F;             // 4 byte
+        long LONG = 0L;                 // 8 byte
+        double PRICE = 0.0d;            // 8 byte
         String STRING = "This is string";
 
+        //conversion can be done to primitive data types
+        int ASCII = (int)CHARACTER;     //
+
+
+
         // OPERATORS
-        int SUM = INTEGER + INTEGER;
+        int SUM = INT + INT;
         int INTCHAR = CHARACTER + CHARACTER;
         String s1 = STRING + STRING;
         String s2 = STRING + CHARACTER;
+        int GREATER = 10 > 100 ? 1 : 0;
         // BOOLEAN + BOOLEAN    Not possible
 
         // CONDITIONAL STATEMENTS
         // IF ELSE
-        if (INTEGER > 0){
+        if (INT > 0){
             // POSITIVE
-        }else if (INTEGER == 0){
+        }else if (INT == 0){
             // VALUE EQUAL TO 0
         }else {
             // VALUE IS NEGATIVE
         }
 
         // SWITCH
-        switch (INTEGER){
+        switch (INT){
             case 'a':
                 // CHARACTER MATCH
                 break;
@@ -371,6 +428,11 @@ public class MainJava extends AbstractClass implements MainInterface {
         System.out.println();
     }
 
+    public static void p(double value) {
+        System.out.println(value);
+        System.out.println();
+    }
+
     @Override
     protected void abstractProtectedMethod() {
 
@@ -382,29 +444,128 @@ public class MainJava extends AbstractClass implements MainInterface {
     }
 
     private static void algorithms() {
+        searching();
+        sorting();
+        dynamicProgramming();
+        graph();
+        greedy();
         divideAndConquer();
+    }
+
+    private static void greedy() {
+        huffmanCoding();
+    }
+
+    private static void huffmanCoding() {
+
+    }
+
+    private static void dynamicProgramming() {
+        // these are seperating big problems to smaller ones and solving them check problems and algorithms for more
+    }
+
+    private static void editDistance() {
+
+    }
+
+    private static void matrixChainMultiplication() {
+
+    }
+
+    private static void knapsackProblem() {
+
+    }
+
+    private static void fibonacciSeries() {
+
+    }
+
+    private static void graph() {
+
+    }
+
+    private static void sorting() {
+        quickSort(new int[]{10, 11, 12, 13, 14, 15, 16, 17, 23, 55});
+        mergeSort();
+    }
+
+    private static void mergeSort() {
+
+    }
+
+    private static int[] quickSort(int[] a) {
+        // pivot and finding its correct position by having all the elements to its left lesser than it and to its right greater than it
+        // wrost case O(n2)
+        return a;
+    }
+
+    private static void searching() {
+        binarySearchAlgorithm(new int[]{10, 11, 12, 13, 14, 15, 16, 17, 55, 100}, 100);
+    }
+
+    private static int binarySearchAlgorithm(int[] sortedArray, int ele) {
+        // possible only in sorted array using midpoint
+        // keep on finding the mid point element and updating the left and right index until your left and right intercepts
+        int li = 0, ri = sortedArray.length - 1;
+        while (li <= ri) {
+            int mid = (li + ri) / 2;     // mid point between two numbers
+            if (sortedArray[mid] == ele) {
+                return mid;     // found at index
+            }
+            if (ele > sortedArray[mid]) {
+                li = mid + 1;   // not in the mid position so updating li to the new position so that it can go on
+            } else {
+                ri = mid - 1;   // not in mid position so updating ri to new position so that it can go on
+            }
+        }
+        return -1; // not found
     }
 
     private static void divideAndConquer() {
         // big problems are cotegorised into smaller problem
+        mergeSort();
+        quickSort(new int[]{10, 11, 12, 13, 14, 15, 16, 17, 23, 55});
     }
 
-    private static void problems() {
-        // INTEGERS
-        pattern();
+    private static void problemsAndAlgorithms() {
+        // methods with return type makes the process end gracefully
+        defaultMethods();
+        // integers
         palindrome();       // same on reverse
-        // STRING
-        reverseString();
+        // string
+        reverseString();    // string builder or palindrome method
         anagram();          // same quantity of characters even at different position
         printingDiagonalAxes();
-        // MAP
+        // map
         twoSum();
         // two dimensional array
-        longestIncreasingSubsequenceInArray();
-        //matrix
+        pyramidAndNumbers();
+        twoDimensionalPattern();
+        // matrix
+        spiralMatrix();
         checkUpperTriangleOrLowerTriangle();
-        // complex
+        // different complex
         differenceBetweenTwoDates();
+        mazeRunBackTracking();
+        lookAndSay();
+        // dynamic programming
+        fibonacciSeries();
+        longestIncreasingSubsequenceInArray();
+        knapsackProblem();
+        matrixChainMultiplication();
+        editDistance();
+    }
+
+    private static void lookAndSay() {
+        // 1,11,12,1121,1321
+    }
+
+    private static void mazeRunBackTracking() {
+
+    }
+
+    private static void spiralMatrix() {
+
     }
 
     private static void anagram() {
@@ -450,6 +611,16 @@ public class MainJava extends AbstractClass implements MainInterface {
     }
 
     private static void longestIncreasingSubsequenceInArray() {
+        /*
+        * find max length
+        * create a two dimen array with one row and column greater than length
+        * loop through l2 array for each element in l1
+        * set the first value to 0,0 to 0
+        *
+        *
+        * create the max length array
+        *
+        * */
         String s1 = "AGGTAB", s2 = "GXTXAYB";
         int l1 = s1.length(), l2 = s2.length();
         int[][] dp = new int[l1 + 1][l2 + 1];
@@ -473,11 +644,41 @@ public class MainJava extends AbstractClass implements MainInterface {
 
     }
 
-    private static void pattern() {
-        twoDimensionalPattern();
+    private static void pyramidAndNumbers() {
+        /*
+        *       1
+        *      212
+        *     32123
+        *    4321234
+        *   543212345
+        *
+        * */
+        int n = 5;
+        for (int r = 1; r <= n; r++) {
+            for (int i = 1; i <= n - r; i++) {      // printing spaces relation with row and n
+                //System.out.print(" ");
+            }
+            int counter = r;
+            for (; counter > 1; counter--) {        // printing the decreasing order
+                //System.out.print(counter);
+            }
+            for (; counter <= r; counter++) {       // printing the increasing order
+                //System.out.print(counter);
+            }
+            //System.out.println();
+        }
     }
 
     private static void twoDimensionalPattern() {
+        /*
+        *
+        * 1  2  3  4  5
+        * 16 17 18 19 6
+        * 15 24 25 20 7
+        * 14 23 22 21 8
+        * 13 12 11 10 9
+        *
+        * */
 
     }
 
@@ -505,7 +706,7 @@ public class MainJava extends AbstractClass implements MainInterface {
 
     private static void palindrome() {
         // palindrome string
-        // use for lop to get the left to right and right to left simultaneously
+        // use for loop to get the left to right and right to left simultaneously
         String s = "racecars";
         int l = s.length();
         Boolean isPalindrome = true;
