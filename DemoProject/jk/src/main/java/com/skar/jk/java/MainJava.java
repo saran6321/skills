@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -35,23 +37,81 @@ public class MainJava extends AbstractClass implements MainInterface {
 
     private static void tableOfContents() {
         basics();   // in out, data types, operator, conditional statements, looping
+        defaultMethods();
         string();
         arrays();
         dataStructures();
         algorithms();
         problemsAndAlgorithms();
         javaFacts();
-        math();
         oops();
     }
 
     private static void defaultMethods() {
+        //integer
+        Integer.parseInt(String.valueOf('1'));
+        Integer.toBinaryString(1);
 
-    }
+        //character
 
-    private static void math() {
+        // STRING
+        String STRING = "sarankumar";
+        STRING.length();        // length will always be +1 than the last index
+        STRING.toCharArray();
+        STRING.charAt(0);       // takes index as argument note for index out of bounds
+        STRING.equals(STRING);  // equals returns the correct boolean value of the string object
+        STRING.compareTo("sa");
+        STRING.compareToIgnoreCase("SA");
+        STRING.startsWith("sa");
+        STRING.endsWith("ar");
+        STRING.indexOf('a');
+        STRING.indexOf('a',5);
+        STRING.lastIndexOf('a');
+        STRING.lastIndexOf('a',5);
+        STRING.indexOf("sar");
+        STRING.substring(5,7);
+        STRING.concat("k");
+        STRING.replace("kumar","");
+        STRING.split("^sa$");
+        STRING.toLowerCase();
+        STRING.toUpperCase();
+        STRING.trim();
+        STRING.strip();
+        STRING.isBlank();
+        STRING.isEmpty();
+
+            // Static methods
+        String.valueOf(5);
+
+        // Array
+        int NUMBERS[]={1,2,3,4,5,6,7,8,9};
+        int[][] _2d = {{1,2,3},{4,5,6}};
+
+
+        Arrays.asList("bmw","benz","audi");
+        Arrays.asList(NUMBERS);             // converts array to collection
+        Arrays.equals(NUMBERS,NUMBERS);     // returns true if the array contents matches
+        Arrays.sort(NUMBERS);               // sorts the array
+        Arrays.toString(NUMBERS);
+        Arrays.parallelSort(NUMBERS);
+        Arrays.binarySearch(NUMBERS,5);
+        Arrays.fill(NUMBERS,5);
+        Arrays.copyOf(NUMBERS,5);
+        Arrays.copyOfRange(NUMBERS,0,3);
+        // Arrays.compare(NUMBERS,NUMBERS);     REQUIRES API LEVEL 33 TIRMANSU
+
+        //collections
+        List LIST = new ArrayList<Integer>();
+        Collections.sort(LIST);
+        Collections.sort(LIST, Comparator.comparing(i -> (int) i).reversed());
+
+        //math
         Math.max(1,2);
         Math.pow(3,2);
+
+        //float
+
+        //double
     }
 
     private static void javaFacts() {
@@ -218,9 +278,12 @@ public class MainJava extends AbstractClass implements MainInterface {
         MAP.get(0);
         MAP.containsKey(0);
         MAP.containsValue(1);
+        MAP.keySet();
         MAP.getOrDefault(0,1);
         MAP.putIfAbsent(0,1);
         MAP.replace(0,5);           // only does replacing and returns old value
+
+        defaultMethods();
 
         //iteration
         //list and set
@@ -240,10 +303,16 @@ public class MainJava extends AbstractClass implements MainInterface {
         // declaration TYPE[] VARIABLE = {VALUE,VALUE,VALUE.....}
         // Accessed VARIABLE[INDEX]
         int[] ONEDARRAY = new int[2];
+        int[] ARRAY = new int[]{1,2,3,4,5};
         int[] NUMBERS = {5,5,2,3,4};
         char[] CHARACTERS = {'a','b','c','d'};
         String[] STRINGS = {"benz","bmw","audi","rolls royce"};
         String STRING = STRINGS[1];
+
+        // arrays are objects with reference reused again and again
+        // on changing the copied array or local array received through parameters with reflect on the original array as well
+        // to create an independent array
+        int copy[] = Arrays.copyOf(NUMBERS, NUMBERS.length); // this creates new array and copies the array to the new one
 
         // ITERATION
         for (int i = 0; i < STRINGS.length; i++) {
@@ -255,24 +324,19 @@ public class MainJava extends AbstractClass implements MainInterface {
             // p("for each",s);
         }
 
-        // Array class with static methods
-        Arrays.asList("bmw","benz","audi");
-        Arrays.asList(NUMBERS);             // converts array to collection
-        Arrays.sort(NUMBERS);               // sorts the array
-        Arrays.toString(NUMBERS);
-        Arrays.parallelSort(NUMBERS);
-        Arrays.binarySearch(NUMBERS,5);
-        Arrays.equals(NUMBERS,NUMBERS);     // returns true if the array contents matches
-        Arrays.fill(NUMBERS,5);
-        Arrays.copyOf(NUMBERS,5);
-        Arrays.copyOfRange(NUMBERS,0,3);
-        // Arrays.compare(NUMBERS,NUMBERS);     REQUIRES API LEVEL 33 TIRMANSU
+        defaultMethods();
 
         // MULTI DIMENSIONAL ARRAY
         int[][] TWODARRAY = new int[2][2];
         TWODARRAY[0][0] = 1;
 
         int[][][] THREEDARRAY = new int[2][2][2];
+
+        multiDimensionalArrayOrMatrix();
+    }
+
+    private static void multiDimensionalArrayOrMatrix() {
+
     }
 
     private static void string() {
@@ -284,33 +348,7 @@ public class MainJava extends AbstractClass implements MainInterface {
         String STRING = new String(CHARSTRING);     // char array to string
         STRING += STRING + " kumar karunakaran";
 
-        // STRING METHODS
-        STRING.length();        // length will always be +1 than the last index
-        STRING.toCharArray();
-        STRING.isEmpty();
-        STRING.charAt(0);       // takes index as argument note for index out of bounds
-        STRING.equals(STRING);  // equals returns the correct boolean value of the string object
-        STRING.compareTo("sa");
-        STRING.compareToIgnoreCase("SA");
-        STRING.startsWith("sa");
-        STRING.endsWith("ar");
-        STRING.indexOf('a');
-        STRING.indexOf('a',5);
-        STRING.lastIndexOf('a');
-        STRING.lastIndexOf('a',5);
-        STRING.indexOf("sar");
-        STRING.substring(5,7);
-        STRING.concat("k");
-        STRING.replace("kumar","");
-        STRING.split("^sa$");
-        STRING.toLowerCase();
-        STRING.toUpperCase();
-        STRING.trim();
-        STRING.strip();
-        STRING.isBlank();
-
-        // Static methods
-        String.valueOf(5);
+        defaultMethods();
 
         // STRING ITERATION
         for (char c : STRING.toCharArray()) {
@@ -345,8 +383,8 @@ public class MainJava extends AbstractClass implements MainInterface {
         String STRING = "This is string";
 
         //conversion can be done to primitive data types
-        int ASCII = (int)CHARACTER;     //
-
+        int ASCII = (int)CHARACTER;
+        //toUpperCaseOrLowerCase('a');  // check for using ascii to convert character to upper case and lower case
 
 
         // OPERATORS
@@ -410,6 +448,15 @@ public class MainJava extends AbstractClass implements MainInterface {
             // e.printStackTrace();
         }
 
+    }
+
+    private static void toUpperCaseOrLowerCase(char a) {
+        if (a >= 'A' && a <= 'Z') {
+            a = (char) (a - 'A' + 'a');
+        } else if (a >= 'a' && a <= 'z') {
+            a = (char) (a - 'a' + 'A');
+        }
+        //System.out.println(a);
     }
 
     public static void p(String title, String value) {
@@ -485,18 +532,46 @@ public class MainJava extends AbstractClass implements MainInterface {
     }
 
     private static void sorting() {
-        quickSort(new int[]{10, 11, 12, 13, 14, 15, 16, 17, 23, 55});
+        int[] a = {55, 54, 53, 52, 51, 50, 49, 48, 47, 46};
+        quickSort(a, 0, a.length-1);
+        sortingMatrix();
         mergeSort();
+    }
+
+    private static void sortingMatrix() {
+
     }
 
     private static void mergeSort() {
 
     }
 
-    private static int[] quickSort(int[] a) {
-        // pivot and finding its correct position by having all the elements to its left lesser than it and to its right greater than it
-        // wrost case O(n2)
-        return a;
+    private static void quickSort(int[] a,int low,int high) {
+        // time complexity worst case : on^2 always the lowest or highest
+        if (low < high) {
+            int pi = quickSortPartition(a, low, high);  // this is the place where pivot is placed at its position and the index of the pivot is returned so that the next calls ignore that pivots place
+            quickSort(a, low, pi - 1);
+            quickSort(a, pi + 1, high);
+        }
+    }
+
+    private static int quickSortPartition(int[] a, int low, int high) {
+        int pivot = a[high];                // high element is choosen as pivot
+        int i = low - 1;                    // this stores the lastlow value than pivots index position
+        for (int j = low; j < high; j++) {  // loop is run until below high
+            if (a[j] < pivot) {             // this decides, ascending or descending
+                i++;                        // increase from the last low index to swap the current low making the front side of the array to be lower than the pivot always
+                swapArray(a, j, i);         // swaps the new low value to next index of the previous low
+            }
+        }
+        swapArray(a, i+1, high);          // since the last i will be the last low index, swap the pivot to the next index of the last low
+        return i+1;                         // return the pivots index for next call ie. i+1 was the place where we put pivot
+    }
+
+    private static void swapArray(int[] a, int i, int j) {
+        int t = a[i];
+        a[i] = a[j];
+        a[j] = t;
     }
 
     private static void searching() {
@@ -523,19 +598,23 @@ public class MainJava extends AbstractClass implements MainInterface {
 
     private static void divideAndConquer() {
         // big problems are cotegorised into smaller problem
-        mergeSort();
-        quickSort(new int[]{10, 11, 12, 13, 14, 15, 16, 17, 23, 55});
+        //merge sort
+        //quick sort
     }
 
     private static void problemsAndAlgorithms() {
         // methods with return type makes the process end gracefully
-        defaultMethods();
+        toUpperCaseOrLowerCase('S');
         // integers
         palindrome();       // same on reverse
         // string
         reverseString();    // string builder or palindrome method
         anagram();          // same quantity of characters even at different position
         printingDiagonalAxes();
+        //array
+        reverseArray();
+        rotateArray();
+        segregateZero();
         // map
         twoSum();
         // two dimensional array
@@ -556,6 +635,48 @@ public class MainJava extends AbstractClass implements MainInterface {
         editDistance();
     }
 
+    private static void segregateZero() {
+        int a[] = {1, 2, 3, 4, 5, 6, 7, 0, 0, 0, 0, 0};
+        int point = a.length-1;
+        for (int i = point; i >= 0; i--) {
+            if (a[i] != 0) {
+                a[point--] = a[i];
+            }
+        }
+        while (point >= 0) {
+            a[point--] = 0;
+        }
+        //System.out.println(Arrays.toString(a));
+    }
+
+    private static void reverseArray() {
+        int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int li = a.length - 1;
+        for (int i = 0; i <= li / 2; i++) {     // swap until the mid point or else will swap the other half to original again
+            int temp = a[i];
+            a[i] = a[li - i];
+            a[li - i] = temp;
+        }
+        //System.out.println(Arrays.toString(a));
+    }
+
+    private static void rotateArray() {
+        int[] a = {1,2,3,4,5,6,7};
+        int rotation = 9;
+        for (int i = 1; i <= rotation; i++) {
+            rotateArrayByOne(a);
+        }
+        //System.out.println(Arrays.toString(a));
+    }
+
+    private static void rotateArrayByOne(int[] a) {
+        int temp = a[0];
+        for (int i=0;i<a.length-1;i++){
+            a[i]=a[i+1];
+        }
+        a[a.length-1]=temp;
+    }
+
     private static void lookAndSay() {
         // 1,11,12,1121,1321
     }
@@ -565,7 +686,28 @@ public class MainJava extends AbstractClass implements MainInterface {
     }
 
     private static void spiralMatrix() {
-
+        int count = 1;
+        int size = 10;
+        int max = size;
+        int li = 0, ri = 0;
+        int[][] a = new int[size][size];
+        while (count <= (size * size)) {
+            for (int i = 0; i < max; i++) {
+                a[li][ri++] = count++;
+            }
+            ri--;
+            for (int i = 0; i < max - 1; i++) {
+                a[++li][ri] = count++;
+            }
+            for (int i = 0; i < max - 1; i++) {
+                a[li][--ri] = count++;
+            }
+            for (int i = 0; i < max - 2; i++) {
+                a[--li][ri] = count++;
+            }
+            ri++;
+            max = max - 2;
+        }
     }
 
     private static void anagram() {
@@ -611,33 +753,7 @@ public class MainJava extends AbstractClass implements MainInterface {
     }
 
     private static void longestIncreasingSubsequenceInArray() {
-        /*
-        * find max length
-        * create a two dimen array with one row and column greater than length
-        * loop through l2 array for each element in l1
-        * set the first value to 0,0 to 0
-        *
-        *
-        * create the max length array
-        *
-        * */
-        String s1 = "AGGTAB", s2 = "GXTXAYB";
-        int l1 = s1.length(), l2 = s2.length();
-        int[][] dp = new int[l1 + 1][l2 + 1];
-        // find max length
-        for (int i = 0; i <= l1; i++) {         // goes through first string
-            for (int j = 0; j <= l2; j++) {     // goes through second string for each character of first string
-                if (i == 0 || j == 0) {
-                    dp[i][j] = 0;               // prevents index out of bounds
-                } else if (s1.charAt(i - 1) == s2.charAt(j - 1)) {  // everything is handled on - 1 index level as 0 and 0 is not allowed
-                    dp[i][j] = 1 + dp[i - 1][j - 1];
-                } else {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
-                }
-            }
-        }
-        //create the array
-        int length = dp[l1][l2];
+
     }
 
     private static void checkUpperTriangleOrLowerTriangle() {
@@ -683,7 +799,20 @@ public class MainJava extends AbstractClass implements MainInterface {
     }
 
     private static void printingDiagonalAxes() {
-
+        String s = "saran";
+        int max = s.length() - 1;
+        for (int i = 0; i <= max; i++) {
+            for (int j = 0; j <= max; j++) {
+                if (i==j){
+                    //System.out.print(s.charAt(i));
+                } else if (max-i==j) {
+                    //System.out.print(s.charAt(i));
+                }else {
+                    //System.out.print(" ");
+                }
+            }
+            //System.out.println();
+        }
     }
 
     private static void twoSum() {

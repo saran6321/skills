@@ -7,7 +7,7 @@ abstract public class AbstractClass {
 
     // abstract private void fub();     private method cannot be abstract
 
-    abstract protected void abstractProtectedMethod();
+    abstract protected void abstractProtectedMethod();  //definition is not allowed for abstract methods
 
     protected void methodOverloading(){}        // inherited class instance can overload this method
 
