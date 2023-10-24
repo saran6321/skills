@@ -664,6 +664,7 @@ public class MainJava extends AbstractClass implements MainInterface {
         rotateArray();
         segregateZero();
         findOddOccurringElementInArray();
+        swappingNthOccurances();
         // map
         twoSum();
         // two dimensional array
@@ -682,6 +683,27 @@ public class MainJava extends AbstractClass implements MainInterface {
         knapsackProblem();
         matrixChainMultiplication();
         editDistance();
+    }
+
+    private static void swappingNthOccurances() {
+        int a[] = {1,2,3,4,5,6,7,8};
+        int n=3;
+        int si = 0, ei = n - 1;
+        while (si < a.length) {
+            swapFrom(a, si, ei);
+            si = si + n;
+            ei = ei + n;
+            if (ei > a.length - 1) {
+                ei = a.length - 1;
+            }
+        }
+        System.out.println(Arrays.toString(a));
+    }
+
+    private static void swapFrom(int[] a, int start, int end) {
+        for (;start < end; start++,end--) {
+            swapArray(a,start,end);
+        }
     }
 
     private static void findOddOccurringElementInArray() {
