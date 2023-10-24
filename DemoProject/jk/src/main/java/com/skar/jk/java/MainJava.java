@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class MainJava extends AbstractClass implements MainInterface {
     //public static methods can be called from other static method without initialisation or directly using class name
@@ -296,6 +297,48 @@ public class MainJava extends AbstractClass implements MainInterface {
             MAP.getOrDefault(i, 1);
         }
 
+        dataStructuresExamples();
+
+    }
+
+    private static void dataStructuresExamples() {
+        Scanner sc = new Scanner(System.in);
+
+        //list
+        List<String> l = new ArrayList<>();
+        String cs = "";
+//        while (!cs.contains("end")){
+//            cs = sc.next();
+//            l.add(cs);
+//        }
+        for (String s : l) {        // remember string is a class type for object so can use any class type to store list of objects
+            System.out.println(s);
+        }
+        l.remove("saran");
+
+        //map
+        Map<Integer,String> map = new HashMap<>();
+        int i=1;
+        String word;
+//        while (i>=0){
+//            i=sc.nextInt();
+//            word = sc.next();
+//            map.put(i,word);
+//        }
+        for (Map.Entry<Integer,String> entry : map.entrySet()){
+            System.out.println("key : " + entry.getKey() + " value : " + entry.getValue());
+        }
+
+        //list of objects
+        int count = 0;
+        List<Student> students = new ArrayList<>();
+        for (int s=0;s<count;s++){
+            //students.add(new Student(sc.next(), sc.nextInt(), sc.nextInt()));
+        }
+        List<Student> fs = students.stream().filter(student -> student.age > 18).collect(Collectors.toList());
+        for (Student s : fs) {
+            System.out.println(s.toString());
+        }
     }
 
     private static void arrays() {
@@ -604,9 +647,12 @@ public class MainJava extends AbstractClass implements MainInterface {
 
     private static void problemsAndAlgorithms() {
         // methods with return type makes the process end gracefully
+
+        //character
         toUpperCaseOrLowerCase('S');
         // integers
         palindrome();       // same on reverse
+        characterToInteger('7');
         // string
         reverseString();    // string builder or palindrome method
         anagram();          // same quantity of characters even at different position
@@ -615,6 +661,7 @@ public class MainJava extends AbstractClass implements MainInterface {
         reverseArray();
         rotateArray();
         segregateZero();
+        findOddOccurringElementInArray();
         // map
         twoSum();
         // two dimensional array
@@ -633,6 +680,21 @@ public class MainJava extends AbstractClass implements MainInterface {
         knapsackProblem();
         matrixChainMultiplication();
         editDistance();
+    }
+
+    private static void findOddOccurringElementInArray() {
+        int a[] = {2, 7, 7, 4, 2, 7, 8, 7, 4};
+        int result = 0;
+        for (int i : a) {
+            result ^= i;
+        }
+        //System.out.println(result);
+    }
+
+    private static void characterToInteger(char c) {
+        if (c >= '0' && c <= '9'){
+            //System.out.println(c - '0');      // normal subtraction from the character to 0 character
+        }
     }
 
     private static void segregateZero() {
