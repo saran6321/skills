@@ -412,7 +412,9 @@ public class MainJava extends AbstractClass implements MainInterface {
 
     private static void basics() {
         Scanner sc = new Scanner(System.in);
-        // sc.nextLine();sc.next();  get the inputs
+//        System.out.println(sc.nextLine());  // can get input until enter is pressed
+//        System.out.println(sc.next());      // space will be considered as next input cant get space as input
+//        System.out.println(sc.nextLine());
 
         // DATA TYPES
         byte BYTE = 0;                  // 1 byte   min -128    max 127
