@@ -46,6 +46,11 @@ public class MainJava extends AbstractClass implements MainInterface {
         problemsAndAlgorithms();
         javaFacts();
         oops();
+        playGround();
+    }
+
+    private static void playGround() {
+
     }
 
     private static void defaultMethods() {
@@ -697,7 +702,7 @@ public class MainJava extends AbstractClass implements MainInterface {
                 ei = a.length - 1;
             }
         }
-        System.out.println(Arrays.toString(a));
+        //System.out.println(Arrays.toString(a));
     }
 
     private static void swapFrom(int[] a, int start, int end) {
