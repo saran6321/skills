@@ -657,6 +657,7 @@ public class MainJava extends AbstractClass implements MainInterface {
 
         //character
         toUpperCaseOrLowerCase('S');
+        arrayToStoreCharacters();
         // integers
         palindrome();       // same on reverse
         characterToInteger('7');
@@ -690,6 +691,13 @@ public class MainJava extends AbstractClass implements MainInterface {
         editDistance();
     }
 
+    private static void arrayToStoreCharacters() {
+        int[] a = new int[52];
+        char c = 'f';
+        a[c%'a']++;
+        //System.out.println(Arrays.toString(a));
+    }
+
     private static void swappingNthOccurances() {
         int a[] = {1,2,3,4,5,6,7,8};
         int n=3;
@@ -717,7 +725,7 @@ public class MainJava extends AbstractClass implements MainInterface {
         for (int i : a) {
             result ^= i;
         }
-        //System.out.println(result);
+        System.out.println(result);
     }
 
     private static void characterToInteger(char c) {
@@ -806,8 +814,13 @@ public class MainJava extends AbstractClass implements MainInterface {
         // make the stings to char array
         // sort the array
         // match the array
-        String s1 = "sarankumar", s2 = "kumacrsaran";
+        String s1 = "abcs", s2 = "bcsa";
         char[] a1 = s1.toCharArray(), a2 = s2.toCharArray();
+        if(checkAnagramWithLoop(a1,a2)){
+            //System.out.println("Anagram");
+        }else {
+            //System.out.println("Not anagram");
+        }
         Arrays.sort(a1);
         Arrays.sort(a2);
         Arrays.equals(a1, a2);
@@ -816,6 +829,23 @@ public class MainJava extends AbstractClass implements MainInterface {
         } else {
             // p("not anagram");
         }
+    }
+
+    private static boolean checkAnagramWithLoop(char[] a1, char[] a2) {
+        boolean isAnagram = false;
+        for (int i = 0; i < a1.length; i++) {
+            for (int j = 0; j < a2.length; j++) {
+                if (a1[i]==a2[j]){
+                    a2[j]=' ';
+                    isAnagram = true;
+                    break;
+                }
+            }
+            if (!isAnagram){
+                return false;
+            }
+        }
+        return true;
     }
 
     private static void reverseString() {
