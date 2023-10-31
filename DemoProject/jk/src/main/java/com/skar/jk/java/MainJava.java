@@ -725,7 +725,7 @@ public class MainJava extends AbstractClass implements MainInterface {
         for (int i : a) {
             result ^= i;
         }
-        System.out.println(result);
+        //System.out.println(result);
     }
 
     private static void characterToInteger(char c) {
@@ -735,15 +735,23 @@ public class MainJava extends AbstractClass implements MainInterface {
     }
 
     private static void segregateZero() {
-        int a[] = {1, 2, 3, 4, 5, 6, 7, 0, 0, 0, 0, 0};
-        int point = a.length-1;
-        for (int i = point; i >= 0; i--) {
+//        Scanner sc = new Scanner(System.in);
+//        int size = sc.nextInt();
+//        int[] a = new int[size];
+//        for (int i=0;i<size;i++){
+//            a[i]=sc.nextInt();
+//        }
+        int[] a = {1, 2, 0, 4, 0, 5};
+        int cur=0;
+        for (int i=0;i<a.length;i++){
             if (a[i] != 0) {
-                a[point--] = a[i];
+                if (cur!=i){
+                    a[cur]=a[cur]+a[i];
+                    a[i]=a[cur]-a[i];
+                    a[cur]=a[cur]-a[i];
+                }
+                cur++;
             }
-        }
-        while (point >= 0) {
-            a[point--] = 0;
         }
         //System.out.println(Arrays.toString(a));
     }
