@@ -20,6 +20,8 @@ class CartActivity : AppCompatActivity(), IActivityCommunicator {
   private lateinit var binding: ActivityCartsLayoutBinding
   private lateinit var viewModel: MainViewModel
 
+  private var cartsAdapter: CartsAdapter? = null
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
@@ -33,7 +35,9 @@ class CartActivity : AppCompatActivity(), IActivityCommunicator {
       layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
       clipToPadding = false
       viewModel.getCartsData().observe(this@CartActivity){
-        adapter = CartsAdapter(it.orEmpty(), this@CartActivity)
+        cartsAdapter = CartsAdapter( iActivityCommunicator = this@CartActivity)
+        adapter = cartsAdapter
+        cartsAdapter?.addItems(it)
       }
     }
     viewModel.getCartsTotal()?.observe(this){

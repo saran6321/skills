@@ -1,5 +1,6 @@
 package com.sample.demo.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,8 @@ import com.sample.demo.utility.setPriceOrHideView
 import com.sample.demo.utility.setTextOrHideView
 
 class CartsAdapter(
-  private val items: List<Item>, private val iActivityCommunicator: IActivityCommunicator
+  private val items: MutableList<Item> = mutableListOf(),
+  private val iActivityCommunicator: IActivityCommunicator
 ) : RecyclerView.Adapter<CartsAdapter.CartHolder>() {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartHolder =
     CartHolder(
@@ -44,6 +46,12 @@ class CartsAdapter(
         }
       }
     }
+  }
+
+  @SuppressLint("NotifyDataSetChanged")
+  fun addItems(item: List<Item>?) {
+    items.addAll(item.orEmpty())
+    notifyDataSetChanged()
   }
 
   override fun onBindViewHolder(holder: CartHolder, position: Int) {

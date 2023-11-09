@@ -40,6 +40,8 @@ class ProductsAdapter(
         btAddCart.setOnClickListener {
           iActivityCommunicator.addToCart(productItem)
         }
+        btFavourite.bringToFront()
+        btAddCart.bringToFront()
         btFavourite.setOnClickListener{
           iActivityCommunicator.addOrRemoveFavourite(productItem)
           if (productItem.isFavourite) {
