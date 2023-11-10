@@ -76,6 +76,7 @@
         <TextView
             android:id="@+id/tv_discount_value"
             android:text="@string/value_0"
+            android:textColor="@color/gray10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/tv_discount_label"
@@ -99,6 +100,7 @@
         <TextView
             android:id="@+id/tv_total_value"
             android:textStyle="bold"
+            android:textColor="@color/gray10"
             android:text="@string/value_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -108,7 +110,7 @@
             app:layout_constraintHorizontal_bias="1"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_checkout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

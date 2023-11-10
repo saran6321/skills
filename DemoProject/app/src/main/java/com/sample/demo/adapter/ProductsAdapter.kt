@@ -40,18 +40,7 @@ class ProductsAdapter(
         btAddCart.setOnClickListener {
           iActivityCommunicator.addToCart(productItem)
         }
-        btFavourite.bringToFront()
         btAddCart.bringToFront()
-        btFavourite.setOnClickListener{
-          iActivityCommunicator.addOrRemoveFavourite(productItem)
-          if (productItem.isFavourite) {
-            btFavourite.background =
-              ContextCompat.getDrawable(btFavourite.context, R.drawable.ic_heart_grey)
-          } else {
-            btFavourite.background =
-              ContextCompat.getDrawable(btFavourite.context, R.drawable.ic_heart_red)
-          }
-        }
       }
     }
   }

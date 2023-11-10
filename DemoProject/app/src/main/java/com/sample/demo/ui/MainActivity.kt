@@ -10,11 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sample.demo.R
 import com.sample.demo.adapter.ProductExpandableGroupItem
-import com.sample.demo.adapter.ProductsList
+import com.sample.demo.adapter.ProductItem
 import com.sample.demo.communicators.IActivityCommunicator
 import com.sample.demo.data.network.response.Category
 import com.sample.demo.data.network.response.Item
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity(), IActivityCommunicator {
     viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
     with(binding.rvProducts) {
-      layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+      layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
       clipToPadding = false
       adapter = GroupAdapter<GroupieViewHolder>().apply {
         add(productSection)
@@ -90,9 +89,7 @@ class MainActivity : AppCompatActivity(), IActivityCommunicator {
   private fun produceExpandableGroup(category: Category): ExpandableGroup =
     ExpandableGroup(ProductExpandableGroupItem(category.name)).apply {
       isExpanded = true
-      category.items?.let {
-        add(ProductsList(it, this@MainActivity))
-      }
+      addAll(category.items?.map { ProductItem(it, this@MainActivity) }.orEmpty())
     }
 
   override fun addToCart(item: Item) {
@@ -111,20 +108,12 @@ class MainActivity : AppCompatActivity(), IActivityCommunicator {
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
     menuInflater.inflate(R.menu.menu_item, menu)
     val menuCartItem = menu?.findItem(R.id.menu_cart)?.setActionView(R.layout.layout_cart_icon)
-    val menuFavItem = menu?.findItem(R.id.menu_favourite)?.setActionView(R.layout.layout_favourites_icon)
     viewModel.getCartsCount().observe(this) {
       menuCartItem?.actionView?.findViewById<TextView>(R.id.tv_cart_count)?.text =
         it.orDefaultInt(0).toString()
     }
-    viewModel.getFavouritesCount().observe(this) {
-      menuFavItem?.actionView?.findViewById<TextView>(R.id.tv_fav_count)?.text =
-        it.orDefaultInt(0).toString()
-    }
     menuCartItem?.actionView?.findViewById<ConstraintLayout>(R.id.cl_cart)?.setOnClickListener {
       startActivity(Intent(this@MainActivity, CartActivity::class.java))
-    }
-    menuFavItem?.actionView?.findViewById<ConstraintLayout>(R.id.cl_fav)?.setOnClickListener {
-      startActivity(Intent(this@MainActivity, FavouritesActivity::class.java))
     }
     return true
   }
