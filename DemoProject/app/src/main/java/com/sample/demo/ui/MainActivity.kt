@@ -89,7 +89,9 @@ class MainActivity : AppCompatActivity(), IActivityCommunicator {
   private fun produceExpandableGroup(category: Category): ExpandableGroup =
     ExpandableGroup(ProductExpandableGroupItem(category.name)).apply {
       isExpanded = true
-      addAll(category.items?.map { ProductItem(it, this@MainActivity) }.orEmpty())
+      category.items?.forEach {
+        add(ProductItem(it, this@MainActivity))
+      }
     }
 
   override fun addToCart(item: Item) {
