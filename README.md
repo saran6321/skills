@@ -1,9 +1,12 @@
 # Description
--This project showcases different set of android topics with a simple store app. 
--This has an **coroutine api call** to get products with categories response, **caching** the api response in **room database** and displaying it with **recycler view group adapter** using **mvvm architecture** 
--This uses **glide** to display images 
--**Dagger hilt** dependency injection is used for dependency handling.
--One can add product to cart ie: room local database storage and we use **glide** to display images.
+
+- This project showcases different set of android topics with a simple store app.
+- This has an **coroutine api call** to get products with categories response, **caching** the api response in **room database** and displaying it with **recycler view group adapter** using **mvvm architecture**
+- This uses **glide** to display images
+- **Dagger hilt** dependency injection is used for dependency handling.
+- One can add product to cart ie: room local database storage and we use **glide** to display images.
+
+  
 
 ## COVERED
 
