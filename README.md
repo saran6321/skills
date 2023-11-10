@@ -4,7 +4,7 @@
 - This has an **coroutine api call** to get products with categories response, **caching** the api response in **room database** and displaying it with **recycler view group adapter** using **mvvm architecture**
 - This uses **glide** to display images
 - **Dagger hilt** dependency injection is used for dependency handling.
-- One can add product to cart ie: room local database storage and we use **glide** to display images.
+- One can add product, remove product from cart and the total amount reflect the actual amount added to the cart ie: room local database storage.
 
   
 
