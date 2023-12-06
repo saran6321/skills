@@ -39,12 +39,11 @@ class MainActivity : AppCompatActivity(), IActivityCommunicator {
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    setTheme(com.example.design2.R.style.Theme2)
     super.onCreate(savedInstanceState)
-
     binding = ActivityMainLayoutBinding.inflate(layoutInflater)
     setContentView(binding.root)
     window?.statusBarColor = ContextCompat.getColor(binding.root.context, R.color.yellow_end)
-    setSupportActionBar(binding.toolBar)
     viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
     with(binding.rvProducts) {
@@ -95,6 +94,7 @@ class MainActivity : AppCompatActivity(), IActivityCommunicator {
     }
 
   override fun addToCart(item: Item) {
+    //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
     viewModel.addToCart(item)
     Toast.makeText(this,"Added ${item.name}",Toast.LENGTH_SHORT).show()
   }

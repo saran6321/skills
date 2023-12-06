@@ -15,6 +15,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,6 +27,13 @@ class MainViewModel @Inject constructor(private val repo : MainRepository): View
   @Inject lateinit var cartDao: CartDao
   private val _productsData = MutableLiveData<ProductResponseData?>()
   val productsData: LiveData<ProductResponseData?> get() = _productsData
+
+  private val _listData = MutableStateFlow(listOf<String>())
+  val listData: StateFlow<List<String>> get() = _listData.asStateFlow()
+
+  private val _uiState = MutableStateFlow(false)
+  val uiState: StateFlow<Boolean>
+    get() = _uiState.asStateFlow()
 
   private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
     throwable.printStackTrace()
@@ -42,6 +52,22 @@ class MainViewModel @Inject constructor(private val repo : MainRepository): View
     } catch (e: Exception) {
       e.printStackTrace()
       _productsData.postValue(ProductResponseData(status = false))
+    }
+  }
+
+  fun getDataList() = viewModelScope.launch(Dispatchers.IO + SupervisorJob() + exceptionHandler) {
+    try {
+      val res = repo.getDataList()
+      // Returns the response from api if its success
+      // On api failure, returns cache if available else returns the failed response
+      if (res?.isSuccessful == true) {
+        _listData.value = res.body().orEmpty()
+      } else {
+        _listData.value = listOf()
+      }
+    } catch (e: Exception) {
+      e.printStackTrace()
+      _listData.value = listOf()
     }
   }
 
@@ -100,4 +126,10 @@ class MainViewModel @Inject constructor(private val repo : MainRepository): View
   }
   fun getFavourites() = cartDao.getFavouriteItems()
   fun getFavouritesCount() = cartDao.getFavouriteItemsCount()
+
+  fun getCurrentTheme(): StateFlow<Boolean> = uiState
+
+  fun updateTheme() {
+    _uiState.value = !_uiState.value
+  }
 }

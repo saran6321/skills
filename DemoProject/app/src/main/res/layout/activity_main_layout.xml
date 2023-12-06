@@ -18,8 +18,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tool_bar"
             app:title="@string/text_my_store"
-            app:titleTextColor="@color/white"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:titleTextColor="?attr/Space"
             android:background="@drawable/background_gradient_yellow"
             app:popupTheme="@style/Widget.AppCompat.PopupMenu"
             android:layout_width="match_parent"

@@ -9,4 +9,7 @@ interface ProductsApi {
   @Headers("Content-Type: application/json; charset=UTF-8", "Accept: application/json")
   @GET("productlist")
   suspend fun getProducts(): Response<ProductResponseData?>?
+
+  @GET("datalist")
+  suspend fun getDataList(): Response<List<String>?>?
 }

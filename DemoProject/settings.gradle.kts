@@ -16,4 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "DemoProject"
 include(":app")
- 
+include(":design2")
