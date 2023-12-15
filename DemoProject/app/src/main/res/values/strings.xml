@@ -66,4 +66,7 @@
     <string name="text_enter_name">Enter Name</string>
     <string name="text_date">Date</string>
     <string name="title_activity_compose">ComposeActivity</string>
+    <string name="title_activity_colors">ColorsActivity</string>
+    <string name="custom_theme">Custom Theme</string>
+    <string name="light">Light</string>
 </resources>

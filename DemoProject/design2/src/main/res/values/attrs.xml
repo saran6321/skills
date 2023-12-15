@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <attr name="Space" format="reference" />
-    <attr name="Ocean" format="reference" />
-    <attr name="Nature" format="reference" />
-</resources>

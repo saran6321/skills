@@ -7,10 +7,13 @@ import android.view.Menu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.ui.graphics.Color
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.color.MaterialColors
 import com.sample.demo.R
 import com.sample.demo.adapter.ProductExpandableGroupItem
 import com.sample.demo.adapter.ProductItem
@@ -32,6 +35,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity(), IActivityCommunicator {
   private lateinit var binding: ActivityMainLayoutBinding
   private lateinit var viewModel: MainViewModel
+  private var isDark: Boolean = false
   private val productSection by lazy {
     Section().apply {
       setHideWhenEmpty(true)
@@ -39,11 +43,14 @@ class MainActivity : AppCompatActivity(), IActivityCommunicator {
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    setTheme(com.example.design2.R.style.Theme2)
     super.onCreate(savedInstanceState)
     binding = ActivityMainLayoutBinding.inflate(layoutInflater)
     setContentView(binding.root)
-    window?.statusBarColor = ContextCompat.getColor(binding.root.context, R.color.yellow_end)
+    window?.statusBarColor = MaterialColors.getColor(
+      binding.root.context,
+      com.example.design2.R.attr.Space,
+      com.example.design2.R.color.white
+    )
     viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
     with(binding.rvProducts) {
@@ -94,7 +101,18 @@ class MainActivity : AppCompatActivity(), IActivityCommunicator {
     }
 
   override fun addToCart(item: Item) {
-    //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+    if (isDark){
+//      setTheme(com.example.design2.R.style.Design_Theme)
+//      recreate()
+      AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+      delegate.applyDayNight()
+    }else{
+//      setTheme(com.example.design2.R.style.Design_Theme)
+//      recreate()
+      AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+      delegate.applyDayNight()
+    }
+    isDark = !isDark
     viewModel.addToCart(item)
     Toast.makeText(this,"Added ${item.name}",Toast.LENGTH_SHORT).show()
   }

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    cliq-->
+    <color name="Space">#226AB4</color>
+    <color name="Ocean">#0096E0</color>
+    <color name="Nature">#007A3D</color>
+    <color name="Kesar">#FF3B30</color>
+    <color name="Coral">#007087</color>
+    <color name="Nero">#263C52</color>
+    <color name="Theme_Grey">#ECEFF2</color>
+
+    <!--    System colors-->
+    <color name="Berry">#4C4EBB</color>
+    <color name="Charcoal">#434952</color>
+    <color name="Dark_sky">#335180</color>
+    <color name="Honey">#F1BC37</color>
+    <color name="Teal">#219CA3</color>
+    <color name="Water">#18ADF3</color>
+    <color name="Paper">#FFFCD6</color>
+
+    <!--  Emote colors  -->
+    <color name="Capsicum">#158C5B</color>
+    <color name="Chillie">#F14848</color>
+    <color name="Pumpkin">#FF8224</color>
+    <color name="Muskmelon">#F9AF29</color>
+    <color name="Mango">#FFD700</color>
+    <color name="Oyster">#A1A2A3</color>
+
+    <!-- Surface colors   -->
+    <color name="White_1">#FFFFFF</color>
+    <color name="Light_Grey">#F5F5F5</color>
+    <color name="White_2">#FFFFFF</color>
+    <color name="White_3">#FFFFFF</color>
+    <color name="Winter_Grey">#F5F5F5</color>
+    <color name="White_4">#FFFFFF</color>
+    <color name="Line_grey">#EFEFEF</color>
+    <color name="Grey">#F0F0F0</color>
+    <color name="Separator_grey">#D8D8D8</color>
+    <color name="Stale_Grey">#BABFCA</color>
+    <color name="Granite">#393939</color>
+    <color name="Modal">#081524</color>
+<!--    check-->
+    <color name="Transparent">#000000</color>
+    <color name="Soft_Black">#000000</color>
+    <color name="Soft_White">#FFFFFF</color>
+    <color name="Linear">#FFFFFF</color>
+
+    <!--  Blur  -->
+<!--    <color name="Ultrathin">#</color>-->
+<!--    <color name="Thin">#</color>-->
+<!--    <color name="Regular">#</color>-->
+<!--    <color name="Thick">#</color>-->
+<!--    <color name="Blur_1">#</color>-->
+<!--    <color name="Blur_2">#</color>-->
+<!--    <color name="Blur_3">#</color>-->
+<!--    <color name="Blur_4">#</color>-->
+
+    <!--  Font  -->
+    <color name="Primary_1">#000000</color>
+    <color name="Primary_2">#333333</color>
+    <color name="Secondary">#545454</color>
+    <color name="Tertiary">#747474</color>
+    <color name="Quaternary">#989898</color>
+    <color name="Baby_Pink">#FF8A9C</color>
+    <color name="Primary_White">#FFFFFF</color>
+    <color name="Primary_Black">#000000</color>
+<!--    check-->
+    <color name="Dull_White">#FFFFFF</color>
+    <color name="Dull_Black">#000000</color>
+
+    <!--  Annotate  -->
+    <color name="Red">#FF0000</color>
+    <color name="Pink">#E40069</color>
+    <color name="Orange">#FF8A00</color>
+    <color name="Yellow">#FFC300</color>
+    <color name="Green">#13CF13</color>
+    <color name="Blue">#1E5EFC</color>
+    <color name="Purple">#773AFE</color>
+    <color name="white">#FFFFFF</color>
+    <color name="Black">#000000</color>
+
+    <!-- Bg -->
+    <color name="BG_1">#FCF5E3</color>
+    <color name="BG_2">#EFEFEF</color>
+    <color name="BG_3">#83D1DC</color>
+    <color name="BG_4">#EBCAE8</color>
+    <color name="BG_5">#FFB8B8</color>
+    <color name="Bg_6">#92A1EC</color>
+    <color name="BG_7">#EBD6C0</color>
+    <color name="BG_8">#FFCE27</color>
+    <color name="BG_9">#9FAAB9</color>
+    <color name="BG_10">#6BCAFB</color>
+    <color name="Bg_11">#FE83C6</color>
+    <color name="BG_12">#FC718C</color>
+    <color name="BG_13">#446AA3</color>
+    <color name="BG_14">#74666A</color>
+    <color name="BG_15">#E8A019</color>
+    <color name="BG_16">#9EACD9</color>
+    <color name="BG_17">#15C39A</color>
+    <color name="Bg_18">#FFAA8C</color>
+    <color name="BG_19">#6FC7DD</color>
+    <color name="BG_20">#E5DC73</color>
+    <color name="BG_21">#CBDBE5</color>
+    <color name="BG_22">#75F4FF</color>
+    <color name="Bg_23">#8AF1A4</color>
+    <color name="BG_24">#DEEBC0</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="grey">#A9CFCF</color>
+    <color name="red">#FF5722</color>
+    <color name="black">#FF000000</color>
+    <color name="yellow_start">#DAC61C</color>
+    <color name="yellow_end">#C8B93C</color>
+    <color name="gray10">#19222a</color>
+    <color name="gray_light">#436C7781</color>
+    <color name="gray_white">#ECECED</color>
+</resources>

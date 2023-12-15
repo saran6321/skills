@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    cliq-->
+    <attr name="Space" format="reference" />
+    <attr name="Ocean" format="reference" />
+    <attr name="Nature" format="reference" />
+    <attr name="Kesar" format="reference" />
+    <attr name="Coral" format="reference" />
+    <attr name="Nero" format="reference"/>
+    <attr name="Theme_Grey" format="reference" />
+
+    <!--    System colors-->
+    <attr name="Berry" format="reference" />
+    <attr name="Charcoal" format="reference" />
+    <attr name="Dark_sky" format="reference" />
+    <attr name="Honey" format="reference" />
+    <attr name="Teal" format="reference" />
+    <attr name="Water" format="reference" />
+    <attr name="Paper" format="reference" />
+
+    <!--  Emote colors  -->
+    <attr name="Capsicum" format="reference" />
+    <attr name="Chillie" format="reference" />
+    <attr name="Pumpkin" format="reference" />
+    <attr name="Muskmelon" format="reference" />
+    <attr name="Mango" format="reference" />
+    <attr name="Oyster" format="reference" />
+
+    <!-- Surface colors   -->
+    <attr name="White_1" format="reference" />
+    <attr name="Light_Grey" format="reference" />
+    <attr name="White_2" format="reference" />
+    <attr name="White_3" format="reference" />
+    <attr name="Winter_Grey" format="reference" />
+    <attr name="White_4" format="reference" />
+    <attr name="Line_grey" format="reference" />
+    <attr name="Grey" format="reference" />
+    <attr name="Separator_grey" format="reference" />
+    <attr name="Stale_Grey" format="reference" />
+    <attr name="Granite" format="reference" />
+    <attr name="Modal" format="reference" />
+    <attr name="Transparent" format="reference" />
+    <attr name="Soft_Black" format="reference" />
+    <attr name="Soft_White" format="reference" />
+    <attr name="Linear" format="reference" />
+
+    <!--  Blur  -->
+    <attr name="Ultrathin" format="reference" />
+    <attr name="Thin" format="reference" />
+    <attr name="Regular" format="reference" />
+    <attr name="Thick" format="reference" />
+    <attr name="Blur_1" format="reference" />
+    <attr name="Blur_2" format="reference" />
+    <attr name="Blur_3" format="reference" />
+    <attr name="Blur_4" format="reference" />
+
+    <!--  Font  -->
+    <attr name="Primary_1" format="reference" />
+    <attr name="Primary_2" format="reference" />
+    <attr name="Secondary" format="reference" />
+    <attr name="Tertiary" format="reference" />
+    <attr name="Quaternary" format="reference" />
+    <attr name="Baby_Pink" format="reference" />
+    <attr name="Primary_White" format="reference" />
+    <attr name="Primary_Black" format="reference" />
+    <attr name="Dull_White" format="reference" />
+    <attr name="Dull_Black" format="reference" />
+
+    <!--  Annotate  -->
+    <attr name="Red" format="reference" />
+    <attr name="Pink" format="reference" />
+    <attr name="Orange" format="reference" />
+    <attr name="Yellow" format="reference" />
+    <attr name="Green" format="reference" />
+    <attr name="Blue" format="reference" />
+    <attr name="Purple" format="reference" />
+    <attr name="white" format="reference" />
+    <attr name="Black" format="reference" />
+
+    <!-- Bg -->
+    <attr name="BG_1" format="reference" />
+    <attr name="BG_2" format="reference" />
+    <attr name="BG_3" format="reference" />
+    <attr name="BG_4" format="reference" />
+    <attr name="BG_5" format="reference" />
+    <attr name="Bg_6" format="reference" />
+    <attr name="BG_7" format="reference" />
+    <attr name="BG_8" format="reference" />
+    <attr name="BG_9" format="reference" />
+    <attr name="BG_10" format="reference" />
+    <attr name="Bg_11" format="reference" />
+    <attr name="BG_12" format="reference" />
+    <attr name="BG_13" format="reference" />
+    <attr name="BG_14" format="reference" />
+    <attr name="BG_15" format="reference" />
+    <attr name="BG_16" format="reference" />
+    <attr name="BG_17" format="reference" />
+    <attr name="Bg_18" format="reference" />
+    <attr name="BG_19" format="reference" />
+    <attr name="BG_20" format="reference" />
+    <attr name="BG_21" format="reference" />
+    <attr name="BG_22" format="reference" />
+    <attr name="Bg_23" format="reference" />
+    <attr name="BG_24" format="reference" />
+</resources>

@@ -2,9 +2,9 @@ package com.sample.demo.compose.ui
 
 import android.content.Context
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
@@ -51,11 +51,14 @@ import com.example.design2.ui.theme.DesignTheme
 import com.example.design2.ui.theme.customColorsPalette
 import com.google.android.material.color.MaterialColors
 import com.sample.demo.R
+import com.sample.demo.data.local.ColorData
+import com.sample.demo.utility.getColorList
+import com.sample.demo.utility.toggleThemeMode
 import com.sample.demo.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ComposeActivity : ComponentActivity() {
+class ComposeActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,9 +66,13 @@ class ComposeActivity : ComponentActivity() {
         setContent {
             val theme = viewModel.getCurrentTheme().collectAsState().value
             if (theme) {
-                setTheme(com.example.design2.R.style.Theme2)
+//                setTheme(com.example.design2.R.style.DesignTheme_Project)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                delegate.applyDayNight()
             } else {
-                setTheme(com.example.design2.R.style.Theme1)
+//                setTheme(com.example.design2.R.style.DesignTheme_Project)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                delegate.applyDayNight()
             }
             DesignTheme(darkTheme = theme) {
                 val modifier = Modifier.fillMaxSize()
@@ -84,7 +91,7 @@ class ComposeActivity : ComponentActivity() {
 fun Canvas(viewModel: MainViewModel) {
     Box(
         modifier = Modifier
-            .background(getCustomColor(LocalContext.current, com.example.design2.R.attr.Space))
+            .background(getCustomColor(LocalContext.current, Design.current.Kesar))
             .fillMaxSize()
     ) {
         Column {
@@ -99,7 +106,7 @@ fun Canvas(viewModel: MainViewModel) {
             GridLayoutSection(
                 modifier = Modifier
                     .fillMaxWidth(),
-                items = productList
+                items = getColorList()
             )
             viewModel.getDataList()
         }
@@ -113,7 +120,7 @@ fun Canvas(viewModel: MainViewModel) {
 }
 
 fun getCustomColor(current: Context, colorInt: Int) =
-    Color(MaterialColors.getColor(current, colorInt, R.color.white))
+    Color(MaterialColors.getColor(current, colorInt, com.example.design2.R.color.white))
 
 @Composable
 fun ComposeMaterials() {
@@ -173,7 +180,7 @@ fun BackgroundImageSection(viewModel: MainViewModel) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun GridLayoutSection(items: List<String>, modifier: Modifier) {
+fun GridLayoutSection(items: List<ColorData>, modifier: Modifier) {
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Adaptive(100.dp),      // fixed and adaptive
         modifier = modifier,
@@ -184,11 +191,14 @@ fun GridLayoutSection(items: List<String>, modifier: Modifier) {
                 modifier = Modifier
                     .padding(8.dp)
                     .clip(RoundedCornerShape(10.dp))
-                    .background(getCustomColor(LocalContext.current, Design.current.Ocean))
+                    .background(getCustomColor(LocalContext.current, item.color))
                     .padding(8.dp)
+                    .clickable {
+                        toggleThemeMode()
+                    }
             ) {
                 Text(
-                    text = item,
+                    text = item.name,
                     color = Color.White,
                     modifier = Modifier.align(Alignment.TopStart)       // alignment with relation to the parent layout topStart topEnd BottomStart BottomEnd
                 )
@@ -202,7 +212,7 @@ fun ChipsSection(chips: List<String>, modifier: Modifier) {
     var selectedChip by rememberSaveable {
         mutableStateOf(0)
     }
-    LazyRow(modifier.background(getCustomColor(LocalContext.current, Design.current.Nature)), contentPadding = PaddingValues(end = 5.dp)) {
+    LazyRow(modifier.background(getCustomColor(LocalContext.current, Design.current.Theme_Grey)), contentPadding = PaddingValues(end = 5.dp)) {
         items(chips.size) {
             Box(contentAlignment = Alignment.Center,
                 modifier = Modifier
@@ -214,8 +224,8 @@ fun ChipsSection(chips: List<String>, modifier: Modifier) {
                     .background(
                         if (it == selectedChip) getCustomColor(
                             LocalContext.current,
-                            Design.current.Nature
-                        ) else getCustomColor(LocalContext.current, Design.current.Space)
+                            Design.current.Kesar
+                        ) else getCustomColor(LocalContext.current, Design.current.Ocean)
                     )
                     .padding(20.dp)
                     //.width(500.dp)            sets the width if available else fills the available space
@@ -244,7 +254,7 @@ fun TextSection(name: String, title: String) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 text = title, style = TextStyle(       // Apply text style manually
-                    color = getCustomColor(LocalContext.current,MaterialTheme.customColorsPalette.Space),
+                    color = getCustomColor(LocalContext.current,MaterialTheme.customColorsPalette.Ocean),
                     textAlign = TextAlign.Center
                 )
             )

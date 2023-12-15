@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.DemoProject" parent="Theme.Material3.Light.NoActionBar" />
+    <style name="Design.Theme" parent="Theme.Material3.DayNight.NoActionBar">
+        <!--    cliq-->
+        <item name="Space">@color/Space</item>
+        <item name="Ocean">@color/Ocean</item>
+        <item name="Nature">@color/Nature</item>
+        <item name="Kesar">@color/Kesar</item>
+        <item name="Coral">@color/Coral</item>
+        <item name="Nero">@color/Nero</item>
+        <item name="Theme_Grey">@color/Theme_Grey</item>
+
+        <!--    System colors-->
+        <item name="Berry">@color/Berry</item>
+        <item name="Charcoal">@color/Charcoal</item>
+        <item name="Dark_sky">@color/Dark_sky</item>
+        <item name="Honey">@color/Honey</item>
+        <item name="Teal">@color/Teal</item>
+        <item name="Water">@color/Water</item>
+        <item name="Paper">@color/Paper</item>
+
+        <!--  Emote colors  -->
+        <item name="Capsicum">@color/Capsicum</item>
+        <item name="Chillie">@color/Chillie</item>
+        <item name="Pumpkin">@color/Pumpkin</item>
+        <item name="Muskmelon">@color/Muskmelon</item>
+        <item name="Mango">@color/Mango</item>
+        <item name="Oyster">@color/Oyster</item>
+
+        <!-- Surface colors   -->
+        <item name="White_1">@color/White_1</item>
+        <item name="Light_Grey">@color/Light_Grey</item>
+        <item name="White_2">@color/White_2</item>
+        <item name="White_3">@color/White_3</item>
+        <item name="Winter_Grey">@color/Winter_Grey</item>
+        <item name="White_4">@color/White_4</item>
+        <item name="Line_grey">@color/Line_grey</item>
+        <item name="Grey">@color/grey</item>
+        <item name="Separator_grey">@color/Separator_grey</item>
+        <item name="Stale_Grey">@color/Stale_Grey</item>
+        <item name="Granite">@color/Granite</item>
+        <item name="Modal">@color/Modal</item>
+        <!--    check-->
+        <item name="Transparent">@color/Transparent</item>
+        <item name="Soft_Black">@color/Soft_Black</item>
+        <item name="Soft_White">@color/Soft_White</item>
+        <item name="Linear">@color/Linear</item>
+
+        <!--  Blur  -->
+        <!--    <item name="Ultrathin">@color/</item>-->
+        <!--    <item name="Thin">@color/</item>-->
+        <!--    <item name="Regular">@color/</item>-->
+        <!--    <item name="Thick">@color/</item>-->
+        <!--    <item name="Blur_1">@color/</item>-->
+        <!--    <item name="Blur_2">@color/</item>-->
+        <!--    <item name="Blur_3">@color/</item>-->
+        <!--    <item name="Blur_4">@color/</item>-->
+
+        <!--  Font  -->
+        <item name="Primary_1">@color/Primary_1</item>
+        <item name="Primary_2">@color/Primary_2</item>
+        <item name="Secondary">@color/Secondary</item>
+        <item name="Tertiary">@color/Tertiary</item>
+        <item name="Quaternary">@color/Quaternary</item>
+        <item name="Baby_Pink">@color/Baby_Pink</item>
+        <item name="Primary_White">@color/Primary_White</item>
+        <item name="Primary_Black">@color/Primary_Black</item>
+        <!--    check-->
+        <item name="Dull_White">@color/Dull_White</item>
+        <item name="Dull_Black">@color/Dull_Black</item>
+
+        <!--  Annotate  -->
+        <item name="Red">@color/Red</item>
+        <item name="Pink">@color/Pink</item>
+        <item name="Orange">@color/Orange</item>
+        <item name="Yellow">@color/Yellow</item>
+        <item name="Green">@color/Green</item>
+        <item name="Blue">@color/Blue</item>
+        <item name="Purple">@color/Purple</item>
+        <item name="white">@color/white</item>
+        <item name="Black">@color/Black</item>
+
+        <!-- Bg -->
+        <item name="BG_1">@color/BG_1</item>
+        <item name="BG_2">@color/BG_2</item>
+        <item name="BG_3">@color/BG_3</item>
+        <item name="BG_4">@color/BG_4</item>
+        <item name="BG_5">@color/BG_5</item>
+        <item name="Bg_6">@color/Bg_6</item>
+        <item name="BG_7">@color/BG_7</item>
+        <item name="BG_8">@color/BG_8</item>
+        <item name="BG_9">@color/BG_9</item>
+        <item name="BG_10">@color/BG_10</item>
+        <item name="Bg_11">@color/Bg_11</item>
+        <item name="BG_12">@color/BG_12</item>
+        <item name="BG_13">@color/BG_13</item>
+        <item name="BG_14">@color/BG_14</item>
+        <item name="BG_15">@color/BG_15</item>
+        <item name="BG_16">@color/BG_16</item>
+        <item name="BG_17">@color/BG_17</item>
+        <item name="Bg_18">@color/Bg_18</item>
+        <item name="BG_19">@color/BG_19</item>
+        <item name="BG_20">@color/BG_20</item>
+        <item name="BG_21">@color/BG_21</item>
+        <item name="BG_22">@color/BG_22</item>
+        <item name="Bg_23">@color/Bg_23</item>
+        <item name="BG_24">@color/BG_24</item>
+    </style>
+</resources>

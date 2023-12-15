@@ -1,11 +1,14 @@
 package com.sample.demo.data.di
 
+import android.content.Context
+import com.example.design2.colorProvider.CustomColors
 import com.sample.demo.data.db.CacheDatabase
 import com.sample.demo.data.network.ProductsApi
 import com.sample.demo.data.network.ApiInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -14,7 +17,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 @InstallIn(SingletonComponent::class)
 class ApiModule {
-
   @Provides
   fun providesApiInterceptor(cacheDatabase: CacheDatabase): ApiInterceptor =
     ApiInterceptor(cacheDatabase)
