@@ -2,6 +2,7 @@ package com.example.design2.colorProvider
 
 import android.content.Context
 import androidx.compose.ui.graphics.Color
+import com.example.design2.R
 import com.google.android.material.color.MaterialColors
 
 class CustomColors {
@@ -13,7 +14,7 @@ class CustomColors {
                 customColors
             } else {
                 ColorData(
-                    Space = getCustomColor(context,R.attr.Light_Grey)
+                    Space = getCustomColor(context, R.attr.Light_Grey)
                 )
             }
         }

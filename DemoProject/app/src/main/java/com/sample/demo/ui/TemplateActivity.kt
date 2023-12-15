@@ -5,12 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.snackbar.Snackbar
 import com.sample.demo.R
-import com.sample.demo.communicators.ICommunicator
 import com.sample.demo.databinding.ActivityTemplateBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TemplateActivity : AppCompatActivity(), ICommunicator {
+class TemplateActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityTemplateBinding

@@ -15,7 +15,7 @@ class ProductExpandableGroupItem(private val name: String?): BindableItem<Produc
   override fun bind(viewBinding: ProductListExpandableGroupBinding, position: Int) {
     this.viewBinding = viewBinding
     with(viewBinding){
-      (viewBinding.root.layoutParams as? StaggeredGridLayoutManager.LayoutParams)?.isFullSpan = true
+      (viewBinding.root.layoutParams as? StaggeredGridLayoutManager.LayoutParams)?.isFullSpan = true    // used to expand this particular item in the staggered grid layout
       tvGroupTitle.setTextOrHideView(name)
       ivExpand.setImageResource(R.drawable.arrow_down_rounded_gray)
       bindIcon()

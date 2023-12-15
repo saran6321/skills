@@ -47,7 +47,7 @@ android {
   kotlinOptions {
     jvmTarget = "17"
   }
-  buildFeatures {
+  buildFeatures {   // views support
     viewBinding = true
     compose = true
   }
@@ -63,7 +63,8 @@ android {
 
 dependencies {
 
-  implementation(project(":design"))
+  implementation(project(":design"))      // implementing a library or module to other module
+
   implementation("androidx.core:core-ktx:1.12.0")
   implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
   implementation("androidx.appcompat:appcompat:1.6.1")

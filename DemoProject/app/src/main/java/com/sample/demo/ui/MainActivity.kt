@@ -8,10 +8,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.compose.ui.graphics.Color
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.color.MaterialColors
 import com.sample.demo.R
@@ -54,7 +53,8 @@ class MainActivity : AppCompatActivity(), IActivityCommunicator {
     viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
     with(binding.rvProducts) {
-      layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+      //layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+      layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
       clipToPadding = false
       adapter = GroupAdapter<GroupieViewHolder>().apply {
         add(productSection)
@@ -95,9 +95,7 @@ class MainActivity : AppCompatActivity(), IActivityCommunicator {
   private fun produceExpandableGroup(category: Category): ExpandableGroup =
     ExpandableGroup(ProductExpandableGroupItem(category.name)).apply {
       isExpanded = true
-      category.items?.forEach {
-        add(ProductItem(it, this@MainActivity))
-      }
+      add(ProductItem(category.items.orEmpty(),this@MainActivity))
     }
 
   override fun addToCart(item: Item) {

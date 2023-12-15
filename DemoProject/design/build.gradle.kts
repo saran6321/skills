@@ -1,9 +1,9 @@
 plugins {
-    id("com.android.library")
+    id("com.android.library")           // plugin for library creation
     id("org.jetbrains.kotlin.android")
 }
 
-android {
+android {       // library does not need applicationid and version code
     namespace = "com.example.design2"
     compileSdk = 34
 

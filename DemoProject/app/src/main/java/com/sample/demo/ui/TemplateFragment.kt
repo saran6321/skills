@@ -3,7 +3,6 @@ package com.sample.demo.ui
 import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -21,15 +20,12 @@ import androidx.core.content.FileProvider
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.sample.demo.R
-import com.sample.demo.communicators.ICommunicator
 import com.sample.demo.databinding.FragmentTemplateBinding
 import com.sample.demo.utility.hideView
 import com.sample.demo.utility.showView
 import com.sample.demo.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
-import java.util.Arrays
 import java.util.Calendar
 
 
@@ -37,8 +33,6 @@ import java.util.Calendar
 class TemplateFragment : Fragment() {
     private var _templateFragmentBinding: FragmentTemplateBinding? = null
     private val binding get() = _templateFragmentBinding!!
-
-    private var iActivityCommunicator: ICommunicator? = null
 
     private val mainViewModel: MainViewModel by viewModels()
 
@@ -79,11 +73,6 @@ class TemplateFragment : Fragment() {
     ): View {
         _templateFragmentBinding = FragmentTemplateBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        iActivityCommunicator = context as? ICommunicator
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
